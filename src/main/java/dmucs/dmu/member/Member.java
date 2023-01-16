@@ -13,8 +13,10 @@ public class Member {
     public Member () {
 
     }
-    public Member(String name, String studentId, String phone, String email, String department, String division) {
+    public Member(Grade grade, String name, String password, String studentId, String phone, String email, String department, String division) {
+        this.grade = grade;
         this.name = name;
+        this.password = password;
         this.studentId = studentId;
         this.phone = phone;
         this.email = email;

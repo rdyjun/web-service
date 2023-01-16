@@ -1,9 +1,11 @@
 package dmucs.dmu.repository;
 
 import dmucs.dmu.member.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemberRepository implements MemberRepositoryInterface {
 
     private static Map<String, Member> store = new HashMap<>();
