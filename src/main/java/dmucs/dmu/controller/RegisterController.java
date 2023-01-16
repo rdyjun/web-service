@@ -1,6 +1,8 @@
 package dmucs.dmu.controller;
 
+import dmucs.dmu.SpringConfig;
 import dmucs.dmu.member.Member;
+import dmucs.dmu.service.MemberService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +14,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RestController
 @RequestMapping("/register")
 public class RegisterController {
-
-//    @PostMapping("/create")
-//    public String register (@RequestParam Member member) {
-//        System.out.println(member.toString());
-//        return member.toString();
-//    }
+    SpringConfig springConfig = new SpringConfig();
+    MemberService memberService = springConfig.memberService();
     @PostMapping("/create")
-    public String register (@RequestBody String st) {
-        System.out.println(st);
-        return st;
+    public String register (@RequestParam Member member) {
+        memberService.join(member);
+        return memberService.findMember(member.getStudentId()).get().toString();
     }
 
 }

@@ -1,29 +1,13 @@
 package dmucs.dmu.repository;
 
 import dmucs.dmu.member.Member;
-import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class MemberRepository implements MemberRepositoryInterface {
-
-    private static Map<String, Member> store = new HashMap<>();
-
-    @Override
-    public Member save(Member member) {
-        store.put(member.getStudentId(), member);
-        return member;
-    }
-
-    @Override
-    public Optional<Member> findById(String studentId) {
-        return Optional.ofNullable(store.get(studentId));
-    }
-
-    @Override
-    public List<Member> findAll() {
-        return new ArrayList<>(store.values());
-    }
-
+public interface MemberRepository {
+    Member save(Member member);
+    Optional<Member> findById(String studentId);
+    List<Member> findAll();
+    Member drop(Member member);
 }

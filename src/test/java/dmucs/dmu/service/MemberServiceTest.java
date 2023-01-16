@@ -2,19 +2,18 @@ package dmucs.dmu.service;
 
 import dmucs.dmu.member.Grade;
 import dmucs.dmu.member.Member;
-import dmucs.dmu.repository.MemberRepositoryInterface;
+import dmucs.dmu.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MemberServiceTest{
 
 
-    MemberRepositoryInterface memberRepository;
+    MemberRepository memberRepository;
 
-    MemberService memberService = new MemberService(memberRepository);
+    MemberServiceImpl memberService = new MemberServiceImpl(memberRepository);
 
     @Test
     public void 중복회원예외 () {
