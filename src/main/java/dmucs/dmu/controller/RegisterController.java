@@ -17,9 +17,8 @@ public class RegisterController {
     SpringConfig springConfig = new SpringConfig();
     MemberService memberService = springConfig.memberService();
     @PostMapping("/create")
-    public String register (@RequestParam Member member) {
+    public String register (@RequestBody Member member) {
         memberService.join(member);
         return memberService.findMember(member.getStudentId()).get().toString();
     }
-
 }
