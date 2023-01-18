@@ -22,6 +22,16 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
+    public Optional<Member> findByPhone(String phone) {
+        return Optional.ofNullable(store.get(phone));
+    }
+
+    @Override
+    public Optional<Member> findByEmail(String email) {
+        return Optional.ofNullable(store.get(email));
+    }
+
+    @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }

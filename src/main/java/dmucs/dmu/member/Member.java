@@ -39,6 +39,12 @@ public class Member {
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
+    public String getPassword () {
+        return password;
+    }
+    public void setPassword (String passowrd) {
+        this.password = password;
+    }
 
     public String getphone() {
         return phone;
