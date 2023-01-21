@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.sql.SQLException;
 
 
-//@CrossOrigin(origins = "주소") //cors 405 해결 코드
 @RestController
 @RequestMapping("/register")
 public class RegisterController {

@@ -1,6 +1,14 @@
 package dmucs.dmu.member;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Grade grade;         // 권한
     private String name;         // 이름
     private String password;     // 비밀번호
