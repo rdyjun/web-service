@@ -9,23 +9,20 @@ import java.util.*;
 public class MemberRepositoryImpl implements MemberRepository {
 
     private static Map<String, Member> store = new HashMap<>();
-
-    @Override
-    public Member save(Member member) {
-        store.put(member.getStudentId(), member);
-        return member;
-    }
+//
+//    @Override
+//    public void save(Member member) {
+//        store.put(member.getStudentId(), member);
+//    }
 
     @Override
     public Optional<Member> findById(String studentId) {
         return Optional.ofNullable(store.get(studentId));
     }
-
     @Override
-    public Optional<Member> findByPhone(String phone) {
-        return Optional.ofNullable(store.get(phone));
+    public Optional<Member> findByName(String name) {
+        return null;
     }
-
     @Override
     public Optional<Member> findByEmail(String email) {
         return Optional.ofNullable(store.get(email));

@@ -1,109 +1,53 @@
 package dmucs.dmu.member;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "DMU_Member")
+@Getter
 public class Member {
+    @Column(name = "MemberGrade")
+    private Grade MemberGrade;         // 권한
+    @Column(name = "MemberName")
+    private String MemberNAme;         // 이름
+    @Column(name = "MemberPassword")
+    private String MemberPassword;     // 비밀번호
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Grade grade;         // 권한
-    private String name;         // 이름
-    private String password;     // 비밀번호
-    private String studentId;    // 학번
-    private String phone;  // 핸드폰 번호
-    private String email;        // 이메일
-    private String department;   // 학과
-    private String division;     // 학부
+    @Column(name = "StudentId")
+    private String StudentId;    // 학번
+    @Column(name = "Email")
+    private String Email;        // 이메일
+    @Column(name = "Department")
+    private String Department;   // 학과
+    @Column(name = "Division")
+    private String Division;     // 학부
 
     public Member () {
 
     }
-    public Member(Grade grade, String name, String password, String studentId, String phone, String email, String department, String division) {
-        this.grade = grade;
-        this.name = name;
-        this.password = password;
-        this.studentId = studentId;
-        this.phone = phone;
-        this.email = email;
-        this.department = department;
-        this.division = division;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-    public String getPassword () {
-        return password;
-    }
-    public void setPassword (String passowrd) {
-        this.password = password;
-    }
-
-    public String getphone() {
-        return phone;
-    }
-
-    public void setphone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public String getDivision() {
-        return division;
-    }
-
-    public void setDivision(String division) {
-        this.division = division;
+    public Member(Grade memberGrade, String memberNAme, String memberPassword, String studentId, String email, String department, String division) {
+        MemberGrade = memberGrade;
+        MemberNAme = memberNAme;
+        MemberPassword = memberPassword;
+        StudentId = studentId;
+        Email = email;
+        Department = department;
+        Division = division;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "grade=" + grade +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", department='" + department + '\'' +
-                ", division='" + division + '\'' +
+                "MemberGrade=" + MemberGrade +
+                ", MemberNAme='" + MemberNAme + '\'' +
+                ", MemberPassword='" + MemberPassword + '\'' +
+                ", StudentId='" + StudentId + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Department='" + Department + '\'' +
+                ", Division='" + Division + '\'' +
                 '}';
     }
 }

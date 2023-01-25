@@ -1,25 +1,27 @@
 package dmucs.dmu;
 
 import dmucs.dmu.repository.MemberRepository;
-import dmucs.dmu.repository.MemberRepositoryImpl;
+import dmucs.dmu.repository.SpringDataJpaMemberRepository;
 import dmucs.dmu.service.MemberService;
-import dmucs.dmu.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
-
 @Configuration
 public class SpringConfig {
 
-    @Bean
-    public MemberRepository memberRepository () {
-        return new MemberRepositoryImpl();
+    private final SpringDataJpaMemberRepository springDataJpaMemberRepository;
+
+
+    @Autowired
+    public SpringConfig(SpringDataJpaMemberRepository springDataJpaMemberRepository) {
+        this.springDataJpaMemberRepository = springDataJpaMemberRepository;
     }
 
-    @Bean
-    public MemberService memberService () {
-        return new MemberServiceImpl(memberRepository());
-    }
 }
+
+
+//    @Bean
+//    public MemberRepository memberRepository () {
+//        return new JpaMemberRepository(em);
+//    }
