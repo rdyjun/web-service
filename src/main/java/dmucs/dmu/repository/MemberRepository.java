@@ -1,15 +1,11 @@
 package dmucs.dmu.repository;
 
-import dmucs.dmu.member.Member;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+@Repository
+@RequiredArgsConstructor
+public class MemberRepository {
 
-public interface MemberRepository {
-//    void save(Member member);
-    Optional<Member> findById(String studentId);
-    Optional<Member> findByName(String name);
-    Optional<Member> findByEmail(String email);
-    List<Member> findAll();
-    Member drop(Member member);
 }

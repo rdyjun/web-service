@@ -9,45 +9,45 @@ import javax.persistence.*;
 @Getter
 public class Member {
     @Column(name = "MemberGrade")
-    private Grade MemberGrade;         // 권한
+    private Grade memberGrade;         // 권한
     @Column(name = "MemberName")
-    private String MemberNAme;         // 이름
+    private String memberName;         // 이름
     @Column(name = "MemberPassword")
-    private String MemberPassword;     // 비밀번호
+    private String memberPassword;     // 비밀번호
     @Id
     @Column(name = "StudentId")
-    private String StudentId;    // 학번
+    private String studentId;    // 학번
     @Column(name = "Email")
-    private String Email;        // 이메일
+    private String email;        // 이메일
     @Column(name = "Department")
-    private String Department;   // 학과
+    private String department;   // 학과
     @Column(name = "Division")
-    private String Division;     // 학부
+    private String division;     // 학부
 
     public Member () {
 
     }
 
-    public Member(Grade memberGrade, String memberNAme, String memberPassword, String studentId, String email, String department, String division) {
-        MemberGrade = memberGrade;
-        MemberNAme = memberNAme;
-        MemberPassword = memberPassword;
-        StudentId = studentId;
-        Email = email;
-        Department = department;
-        Division = division;
+    public Member(Grade memberGrade, String memberName, String memberPassword, String studentId, String email, String department, String division) {
+        this.memberGrade = memberGrade;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
+        this.studentId = studentId;
+        this.email = email;
+        this.department = department;
+        this.division = division;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "MemberGrade=" + MemberGrade +
-                ", MemberNAme='" + MemberNAme + '\'' +
-                ", MemberPassword='" + MemberPassword + '\'' +
-                ", StudentId='" + StudentId + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Department='" + Department + '\'' +
-                ", Division='" + Division + '\'' +
+                "memberGrade=" + memberGrade +
+                ", memberName='" + memberName + '\'' +
+                ", memberPassword='" + memberPassword + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", email='" + email + '\'' +
+                ", department='" + department + '\'' +
+                ", division='" + division + '\'' +
                 '}';
     }
 }

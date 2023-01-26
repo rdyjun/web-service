@@ -1,12 +1,5 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.member.Grade;
-import dmucs.dmu.member.Member;
-import dmucs.dmu.repository.MemberRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
