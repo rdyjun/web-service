@@ -1,28 +1,30 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.SpringConfig;
-import dmucs.dmu.member.Grade;
+import dmucs.dmu.bcrypt.EncryptHelper;
+import dmucs.dmu.bcrypt.SaltEncrypt;
 import dmucs.dmu.member.Member;
 import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-
     private final JpaMemberRepository jpaMemberRepository;
-
+    private final EncryptHelper encryptHelper;
 
     // 가입
     public void join (Member member) {
+        String memberPw = member.getMemberPassword();
+        String encryptPw = encryptHelper.encrypt(memberPw);
+        member.setMemberPassword(encryptPw);
         validateDuplicateManager(member);
         jpaMemberRepository.save(member);
     }
+
     // 중복 확인
     public void validateDuplicateManager (Member member) {
         jpaMemberRepository.findById(member.getStudentId())

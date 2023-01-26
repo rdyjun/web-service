@@ -1,5 +1,6 @@
-src/main/resources/application.properties
-src/main/java/dmucs/dmu/WebConfig.java
+#src/main/resources/application.properties
+#src/main/java/dmucs/dmu/config/WebConfig.java
+#src/main/java/dmucs/dmu/config/WebSecurityConfig.java
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij

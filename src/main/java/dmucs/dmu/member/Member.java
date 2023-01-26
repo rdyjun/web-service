@@ -1,5 +1,6 @@
 package dmucs.dmu.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DMU_Member")
 @Getter
+@AllArgsConstructor
 public class Member {
     @Column(name = "MemberGrade")
     private Grade memberGrade;         // 권한
@@ -24,18 +26,10 @@ public class Member {
     @Column(name = "Division")
     private String division;     // 학부
 
-    public Member () {
+    public Member () {}
 
-    }
-
-    public Member(Grade memberGrade, String memberName, String memberPassword, String studentId, String email, String department, String division) {
-        this.memberGrade = memberGrade;
-        this.memberName = memberName;
+    public void setMemberPassword(String memberPassword) {
         this.memberPassword = memberPassword;
-        this.studentId = studentId;
-        this.email = email;
-        this.department = department;
-        this.division = division;
     }
 
     @Override
