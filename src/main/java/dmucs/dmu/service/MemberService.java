@@ -1,7 +1,6 @@
 package dmucs.dmu.service;
 
 import dmucs.dmu.bcrypt.EncryptHelper;
-import dmucs.dmu.bcrypt.SaltEncrypt;
 import dmucs.dmu.member.Member;
 import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@Service
+@RestController
 @RequiredArgsConstructor
 public class MemberService {
     private final JpaMemberRepository jpaMemberRepository;
@@ -21,6 +20,7 @@ public class MemberService {
         String memberPw = member.getMemberPassword();
         String encryptPw = encryptHelper.encrypt(memberPw);
         member.setMemberPassword(encryptPw);
+        System.out.println(member);
         validateDuplicateManager(member);
         jpaMemberRepository.save(member);
     }
@@ -32,6 +32,7 @@ public class MemberService {
                     throw new IllegalStateException("이미 존재하는 학생입니다.");
                 });
     }
+
     public Optional<Member> findById (String studentId) {
         return jpaMemberRepository.findById(studentId);
     }
