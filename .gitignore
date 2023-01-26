@@ -1,5 +1,5 @@
 src/main/resources/application.properties
-
+src/main/java/dmucs/dmu/WebConfig.java
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij
