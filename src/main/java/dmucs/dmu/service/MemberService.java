@@ -31,7 +31,6 @@ public class MemberService {
                     throw new IllegalStateException("이미 존재하는 학생입니다.");
                 });
     }
-
     public Optional<MemberDTO> findById (String studentId) {
         return jpaMemberRepository.findById(studentId);
     }
