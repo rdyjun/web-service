@@ -5,11 +5,11 @@ import dmucs.dmu.member.Member;
 import dmucs.dmu.member.MemberDTO;
 import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RestController
+@Service
 @RequiredArgsConstructor
 public class MemberService {
     private final JpaMemberRepository jpaMemberRepository;
