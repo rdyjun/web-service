@@ -14,7 +14,7 @@ public class LoginService {
     private final JpaMemberRepository jpaMemberRepository;
     private final EncryptHelper encryptHelper;
     public boolean login (Member member) {
-        MemberDTO loginedMember = jpaMemberRepository.findByPhone(member.getPhone()).get();
+        MemberDTO loginedMember = jpaMemberRepository.findByEmail(member.getEmail()).get();
         if(loginedMember == null)
             return false;
 

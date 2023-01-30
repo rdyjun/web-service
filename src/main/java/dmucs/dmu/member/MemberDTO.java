@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DMU_Member")
 @Getter
-@AllArgsConstructor
 @ToString
+@AllArgsConstructor
 public class MemberDTO{
     @Column(name = "membergrade")
     private Grade memberGrade;         // 권한
@@ -21,8 +21,8 @@ public class MemberDTO{
     @Id
     @Column(name = "studentid")
     private String studentId;          // 학번
-    @Column(name = "phone")
-    private String phone;              // 이메일
+    @Column(name = "email")
+    private String email;              // 이메일
     @Column(name = "department")
     private String department;        // 학과
     @Column(name = "division")
@@ -35,8 +35,9 @@ public class MemberDTO{
         this.memberName = member.getMemberName();
         this.memberPassword = pw;
         this.studentId = member.getStudentId();
-        this.phone = member.getPhone();
+        this.email = member.getEmail();
         this.department = member.getDepartment();
         this.division = member.getDivision();
     }
+
 }

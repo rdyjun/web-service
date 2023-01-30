@@ -2,17 +2,11 @@ package dmucs.dmu.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 
 @Getter
-@AllArgsConstructor
 public class Member extends MemberDTO{
-
-    public Member() {}
+    public Member (Grade grade, String memberName, String memberPassword, String studentId, String email, String department, String division) {
+        super(grade,memberName,memberPassword,studentId,email, department,division);
+    }
 }
