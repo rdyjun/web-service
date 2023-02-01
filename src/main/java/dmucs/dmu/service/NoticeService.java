@@ -1,29 +1,29 @@
-package dmucs.dmu.notice;
+package dmucs.dmu.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-public class Notice {
-    public static void main(String[] args) {
-        String URL = "https://www.dongyang.ac.kr/dongyang/129/subview.do";
+@Slf4j
+@Service
+public class NoticeService {
+    String URL = "https://www.dongyang.ac.kr/dongyang/129/subview.do";
+
+    public void getNotice () {
         Connection conn = Jsoup.connect(URL);
 
         try {
             Document document = conn.get();
             Elements UrlElements = document.getElementsByClass("notice");
 
-            for (Element element : UrlElements){
-                System.out.println(element);
-            }
+        } catch (IOException e){
+            log.trace(e.getMessage());
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
     }
 }
