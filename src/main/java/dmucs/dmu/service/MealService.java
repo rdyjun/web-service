@@ -1,5 +1,6 @@
 package dmucs.dmu.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,20 +10,25 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.apache.logging.log4j.Logger;
 
+
+@Slf4j
 @Service
 public class MealService {
-    final String mealAddress = "https://www.dongyang.ac.kr/dongyang/130/subview.do?enc=Zm5jdDF8QEB8JTJGZGlldCUyRmRvbmd5YW5nJTJGMSUyRnZpZXcuZG8lM0Ztb25kYXklM0QyMDIzLjAxLjIzJTI2d2VlayUzRHByZSUyNg%3D%3D";
+    final String mealAddress = "https://www.dongyang.ac.kr/dongyang/130/";
 
     public ArrayList getThisWeekMeal () {
         Connection conn = Jsoup.connect(mealAddress);
         ArrayList<ArrayList<String>> meal = new ArrayList<>();
-        try {
+        try{
             Document document = conn.get();
             meal = getTableBody(document);
         } catch (IOException e) {
-
+            log.trace(e.getMessage());
         }
+
+
         return meal;
     }
 
