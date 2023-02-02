@@ -1,11 +1,11 @@
 package dmucs.dmu.repository;
 
-import dmucs.dmu.member.MemberDTO;
+import dmucs.dmu.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
-public interface JpaMemberRepository extends JpaRepository<MemberDTO, String> {
-    Optional<MemberDTO> findById(String studentId);
+public interface JpaMemberRepository extends JpaRepository<Member, String> {
+    Optional<Member> findById(String studentId);
 
-    Optional<MemberDTO> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 }

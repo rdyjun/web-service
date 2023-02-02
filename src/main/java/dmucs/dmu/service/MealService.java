@@ -9,8 +9,6 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import org.apache.logging.log4j.Logger;
 
 
 @Slf4j
