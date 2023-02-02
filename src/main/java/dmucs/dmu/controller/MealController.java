@@ -13,7 +13,7 @@ public class MealController {
     private final MealService mealService;
 
     @PostMapping("/meal")
-    public ArrayList meal() {
+    public String[][] meal() {
         return mealService.getThisWeekMeal();
     }
 }

@@ -16,11 +16,11 @@ import org.apache.logging.log4j.Logger;
 @Slf4j
 @Service
 public class MealService {
-    final String mealAddress = "https://www.dongyang.ac.kr/dongyang/130/";
+    final String mealAddress = "https://www.dongyang.ac.kr/dongyang/130/subview.do?enc=Zm5jdDF8QEB8JTJGZGlldCUyRmRvbmd5YW5nJTJGMSUyRnZpZXcuZG8lM0Ztb25kYXklM0QyMDIzLjAxLjIzJTI2d2VlayUzRHByZSUyNg%3D%3D";
 
-    public ArrayList getThisWeekMeal () {
+    public String[][] getThisWeekMeal () {
         Connection conn = Jsoup.connect(mealAddress);
-        ArrayList<ArrayList<String>> meal = new ArrayList<>();
+        String[][] meal = new String[2][5];
         try{
             Document document = conn.get();
             meal = getTableBody(document);
@@ -32,19 +32,22 @@ public class MealService {
         return meal;
     }
 
-    public ArrayList getTableBody(Document document) {
+    public String[][] getTableBody(Document document) {
         Elements stockTableBody = document.select("table tbody tr");  // 주간 학식 테이블 가져오기
-        ArrayList<ArrayList<String>> meal = new ArrayList<>();  // 담을 공간
+        String[][] meal = new String[2][5];  // 담을 공간
         String tableGrade;  // 식당 구분
         int i = 0;
         for (Element element : stockTableBody) {  // 한 줄
             Elements tableRow = element.select("td");  //식단상세
-            tableGrade = tableRow.get(0).text();  //식당구분
+
             if (!tableRow.get(1).text().equals("-")) {
+                tableGrade = tableRow.get(0).text();  //식당구분
+
                 if (tableGrade.equals("학생식당")) {
-                    meal.get(0).set(i, tableRow.get(2).text());
+                    meal[0][i] = tableRow.get(2).text();
+
                 } else if (tableGrade.equals("교직원식당")) {
-                    meal.get(1).set(i, tableRow.get(2).text());
+                    meal[1][i] = tableRow.get(2).text();
                     i++;
                 }
             }
