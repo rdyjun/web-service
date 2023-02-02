@@ -1,5 +1,13 @@
 package dmucs.dmu.service;
 
+import dmucs.dmu.bcrypt.EncryptHelper;
+import dmucs.dmu.member.Grade;
+import dmucs.dmu.member.Member;
+import dmucs.dmu.member.MemberDTO;
+import dmucs.dmu.repository.JpaMemberRepository;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
@@ -10,10 +18,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @Transactional
 class MemberServiceTest{
-//    @Autowired
-//    MemberRepository memberRepository;
-//    @Autowired
-//    MemberService memberService;
+    @Autowired
+    JpaMemberRepository jpaMemberRepository;
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    EncryptHelper encryptHelper;
+
+    @Test
+    public void 회원조회 () {
+        Member m1 = new Member(Grade.Student, "주성준", "0000", "20222296", "@dongyang.ac.kr", "컴퓨터소프트웨어", "컴퓨터공학부");
+        String encryptPw = encryptHelper.encrypt(m1.getMemberPassword());
+        MemberDTO m2 = new MemberDTO(m1, encryptPw);
+        MemberDTO find = jpaMemberRepository.findByEmail(m2.getEmail()).get();
+        Assertions.assertThat(find).isEqualTo(m2);
+    }
 //
 //    @AfterEach
 //    public void afterEach () {

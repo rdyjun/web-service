@@ -18,7 +18,7 @@ public class LoginService {
         if(loginedMember == null)
             return false;
 
-        if (!encryptHelper.isMatch(loginedMember.getMemberPassword(), member.getMemberPassword()))
+        if (!encryptHelper.isMatch(member.getMemberPassword(), loginedMember.getMemberPassword()))
             return false;
 
         return true;
