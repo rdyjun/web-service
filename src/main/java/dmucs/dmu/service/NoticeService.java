@@ -11,8 +11,6 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service
@@ -22,10 +20,14 @@ public class NoticeService {
     private final String noticeURL = "https://www.dongyang.ac.kr/dongyang/129/subview.do";
 
     public void noticeUpdate () {
-        List<Notice> noticeArray;
+        Notice[] noticeArray;
         Document document = noticeConnect(noticeURL);
         noticeArray = getNoticeArray(document);
-        jpaNoticeRepository.saveAll(noticeArray);
+
+        for(Notice noticeList : noticeArray){
+            validateDuplicateManager(noticeList);
+            jpaNoticeRepository.saveAndFlush(noticeList);
+        }
     }
 
     public Document noticeConnect (String noticeURL) {
@@ -39,12 +41,12 @@ public class NoticeService {
         return null;
     }
 
-    public List<Notice> getNoticeArray (Document document) {
+    public Notice[] getNoticeArray (Document document) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
-        List<Notice> noticeArray = new ArrayList<>();  // tr 태그를 변환&저장할 Notice 객체의 배열
+        Notice[] noticeArray = new Notice[tableRows.size()];  // tr 태그를 변환&저장할 Notice 객체의 배열
         for(int i = 1; i < tableRows.size(); i++){
             Elements tableElement = tableRows.get(i).select("td");  // i번째 tr 태그 라인의 td 태그들
-            noticeArray.set(i - 1, new Notice(tableElement));
+            noticeArray[i - 1] = new Notice(tableElement);
         }
         return noticeArray;
     }
