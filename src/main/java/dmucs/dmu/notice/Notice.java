@@ -1,26 +1,32 @@
 package dmucs.dmu.notice;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.jsoup.select.Elements;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "DMU_notice")
 @Getter
-@RequiredArgsConstructor
+@ToString
+@AllArgsConstructor
 public class Notice {
+
     @Id
-    @Column(name = "noticenumber")
-    private Long noticeNumber;
-    @Column(name = "noticetitle")
+    @Column(name = "noticeNumber")
+    private Long noticeNumber = 0L;
+    @Column(name = "noticeTitle")
     private String noticeTitle;
     @Column(name = "noticeAuthor")
     private String noticeAuthor;
-    @Column(name = "noticeAuthor")
+    @Column(name = "noticeDate")
     private String noticeDate;
 
+    public Notice () {}
     public Notice (Elements noticeElements) {
+        this.noticeNumber++;
         this.noticeTitle = noticeElements.get(0).text();
         this.noticeAuthor = noticeElements.get(1).text();
         this.noticeDate = noticeElements.get(2).text();
