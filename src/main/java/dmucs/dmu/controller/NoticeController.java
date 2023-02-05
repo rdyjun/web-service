@@ -5,6 +5,7 @@ import dmucs.dmu.repository.JpaNoticeRepository;
 import dmucs.dmu.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,5 +20,10 @@ public class NoticeController {
     public List<Notice> notice () {
         noticeService.noticeUpdate();
         return jpaNoticeRepository.findAll();
+    }
+    @PostMapping("/notice/create")
+    public void noticeCreate (@RequestBody Notice notice) {
+        Notice ntc = new Notice();
+        noticeService.save(notice);
     }
 }
