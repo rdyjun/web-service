@@ -1,6 +1,7 @@
 package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Member;
+import dmucs.dmu.member.MemberSigninDto;
 import dmucs.dmu.service.LoginService;
 import dmucs.dmu.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class SignController {
         return memberService.findById(member.getStudentId()).get().toString();
     }
     @PostMapping("/login")
-    public String login (@RequestBody Member member) {
+    public String login (@RequestBody MemberSigninDto member) {
         if(loginService.login(member))
             return "redirect:/";
         return "login";

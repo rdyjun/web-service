@@ -23,7 +23,6 @@ public class NoticeController {
     }
     @PostMapping("/notice/create")
     public void noticeCreate (@RequestBody Notice notice) {
-        Notice ntc = new Notice();
         noticeService.save(notice);
     }
 }

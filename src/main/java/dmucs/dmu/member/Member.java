@@ -7,7 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "DMU_Member")
+@Table(name = "dmu_member")
 @Getter
 @ToString
 @AllArgsConstructor
