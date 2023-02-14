@@ -53,9 +53,8 @@ public class NoticeService {
 
     public Notice[] getRecentNotice (Document document, String division) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
-        System.out.println(tableRows.size());
         Notice[] noticeArray = new Notice[tableRows.size()];  // tr 태그를 변환&저장할 Notice 객체의 배열
-        for(int i = 1; i < tableRows.size(); i++){
+        for(int i = 1; i <= tableRows.size(); i++){
             Elements tableElement = tableRows.get(i).select("td");  // i번째 tr 태그 라인의 td 태그들
 
             noticeArray[i - 1] = new Notice(

@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface JpaNoticeRepository extends JpaRepository<Notice, Long>, JpaSpecificationExecutor<Notice> {
     Optional<Notice> findByNoticeTitle(String noticeTitle);
     Optional<Notice> findByNoticeDate(String noticeDate);
-    Optional<Notice> findByNoticeNumberLessThanNoticeNumberGreaterThan(int less, int greater);
+    Optional<Notice> findByNoticeNumberLessThanAndNoticeNumberGreaterThan(int less, int greater);
 }
