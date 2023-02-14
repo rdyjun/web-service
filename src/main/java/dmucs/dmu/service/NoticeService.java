@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,11 +30,14 @@ public class NoticeService {
     public void noticeUpdate () {
         Notice[] noticeArray;
         Document univercityDocument = noticeConnect(univercityURL + univercityNoticeURL);
-        noticeArray = getNoticeArray(univercityDocument, "대학");
+        noticeArray = getRecentNotice(univercityDocument, "대학");
 
         for(Notice noticeList : noticeArray){
             save(noticeList);
         }
+    }
+    public Optional<Notice> getPageNotice(int less, int greater) {
+        return jpaNoticeRepository.findByNoticeNumberLessThanAndNoticeNumberGreaterThan(less, greater);
     }
 
     public Document noticeConnect (String noticeURL) {
@@ -47,7 +51,7 @@ public class NoticeService {
         return null;
     }
 
-    public Notice[] getNoticeArray (Document document, String division) {
+    public Notice[] getRecentNotice (Document document, String division) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
         System.out.println(tableRows.size());
         Notice[] noticeArray = new Notice[tableRows.size()];  // tr 태그를 변환&저장할 Notice 객체의 배열
