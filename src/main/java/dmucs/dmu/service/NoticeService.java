@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -36,8 +37,8 @@ public class NoticeService {
             save(noticeList);
         }
     }
-    public Optional<Notice> getPageNotice(int less, int greater) {
-        return jpaNoticeRepository.findByNoticeNumberLessThanAndNoticeNumberGreaterThan(less, greater);
+    public List<Notice> getPageNotice(Long less, Long greater) {
+        return jpaNoticeRepository.findPage(less, greater);
     }
 
     public Document noticeConnect (String noticeURL) {
@@ -57,7 +58,7 @@ public class NoticeService {
         for(int i = 1; i < tableRows.size(); i++){
             Elements tableElement = tableRows.get(i).select("td");  // i번째 tr 태그 라인의 td 태그들
 
-            noticeArray[i - 1] = new Notice(
+            noticeArray[tableRows.size() - 1 - i] = new Notice(
                     tableElement.get(1).text(),  // 제목
                     division,  // 작성자
                     getContent(univercityURL + tableElement.get(1).select("a").attr("href")),  // 링크 주소 내 컨텐츠
