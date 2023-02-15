@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.Optional;
 
-public interface JpaNoticeRepository extends JpaRepository<Notice, Long>, JpaSpecificationExecutor<Notice> {
+public interface JpaNoticeRepository extends JpaRepository<Notice, Long> {
     Optional<Notice> findByNoticeTitle(String noticeTitle);
     Optional<Notice> findByNoticeDate(String noticeDate);
     Optional<Notice> findByNoticeNumberLessThanAndNoticeNumberGreaterThan(int less, int greater);
