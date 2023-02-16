@@ -37,8 +37,12 @@ public class NoticeService {
             save(noticeList);
         }
     }
-    public List<Notice> getPageNotice(Long less, Long greater) {
-        return jpaNoticeRepository.findPage(less, greater);
+
+    public List<Notice> getNoticePage(long nId) {
+        return jpaNoticeRepository.findPage(nId);
+    }
+    public List<Notice> getNoticeList(Long less, Long greater) {
+        return jpaNoticeRepository.findPageList(less, greater);
     }
 
     public Document noticeConnect (String noticeURL) {

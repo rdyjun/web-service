@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "noticeNumber")
-    private Long noticeNumber = 0L;
+    @Column(name = "noticeId")
+    private Long noticeId = 0L;
     @Column(name = "noticeTitle")
     private String noticeTitle;
     @Column(name = "noticeAuthor")
