@@ -16,10 +16,14 @@ public class NoticeController {
     private final NoticeService noticeService;
     private final JpaNoticeRepository jpaNoticeRepository;
 
-    @PostMapping("")
+    @PostMapping("/update")
     public List<Notice> notice () {
         noticeService.noticeUpdate();
         return jpaNoticeRepository.findAll();
+    }
+    @PostMapping("/all")
+    public List<Notice> findall(){
+        return noticeService.findAll();
     }
     @PostMapping("/pagelist")
     public List<Notice> getPageNotice (@RequestBody Map<String, Long> map) {

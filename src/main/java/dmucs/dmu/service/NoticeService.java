@@ -10,9 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,17 +21,15 @@ public class NoticeService {
     private final String univercityNoticeURL = "/dongyang/129/subview.do";
 
     public void save (Notice notice) {
-        validateDuplicateManager(notice);
         jpaNoticeRepository.save(notice);
     }
 
-
+    public List<Notice> findAll(){
+        return jpaNoticeRepository.findAll();
+    }
     public void noticeUpdate () {
-        Notice[] noticeArray;
-        Document univercityDocument = noticeConnect(univercityURL + univercityNoticeURL);
-        noticeArray = getRecentNotice(univercityDocument, "대학");
 
-        for(Notice noticeList : noticeArray){
+        for(Notice noticeList : getRecentNotice(noticeConnect(univercityURL + univercityNoticeURL), "대학")){
             save(noticeList);
         }
     }
@@ -46,11 +42,9 @@ public class NoticeService {
     }
 
     public Document noticeConnect (String noticeURL) {
-        Connection conn = Jsoup.connect(noticeURL);
         try {
-            Document document = conn.get();
-            return document;
-        } catch (IOException e) {
+            return Jsoup.connect(noticeURL).get();
+        } catch (Exception e) {
             log.trace(e.getMessage());
         }
         return null;
@@ -58,11 +52,19 @@ public class NoticeService {
 
     public Notice[] getRecentNotice (Document document, String division) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
-        Notice[] noticeArray = new Notice[tableRows.size() - 1];  // tr 태그를 변환&저장할 Notice 객체의 배열
-        for(int i = 1; i < tableRows.size(); i++){
+        Notice[] noticeArray = new Notice[0];
+        for(int i = tableRows.size() - 1; i > 0; i++){
+            Elements tableElement = tableRows.get(i).select("td");
+            if(!validateDuplicateManager(tableElement.get(1).text(), tableElement.get(3).text())) {
+                noticeArray = new Notice[i + 1];  // tr 태그를 변환&저장할 Notice 객체의 배열
+                break;
+            }
+        }
+
+        for(int i = 1; i < noticeArray.length; i++){
             Elements tableElement = tableRows.get(i).select("td");  // i번째 tr 태그 라인의 td 태그들
 
-            noticeArray[tableRows.size() - 1 - i] = new Notice(
+            noticeArray[noticeArray.length - 1 - i] = new Notice(
                     tableElement.get(1).text(),  // 제목
                     division,  // 작성자
                     getContent(univercityURL + tableElement.get(1).select("a").attr("href")),  // 링크 주소 내 컨텐츠
@@ -73,18 +75,11 @@ public class NoticeService {
     }
 
     public String getContent (String contentURL) {
-        Document document = noticeConnect(contentURL);
-        return document.select(".view-con").html();
+        return noticeConnect(contentURL).select(".view-con").html();
     }
 
 
-    public void validateDuplicateManager (Notice notice) {
-        jpaNoticeRepository.findByNoticeTitle(notice.getNoticeTitle())
-                .ifPresent(n -> {
-                    jpaNoticeRepository.findByNoticeDate(notice.getNoticeDate())
-                            .ifPresent(m -> {
-                                throw new IllegalStateException("이미 존재하는 공지입니다.");
-                            });
-                });
+    public boolean validateDuplicateManager (String noticeTitle, String noticeDate) {
+        return jpaNoticeRepository.findByNoticeTitleDate(noticeTitle, noticeDate).isPresent();
     }
 }
