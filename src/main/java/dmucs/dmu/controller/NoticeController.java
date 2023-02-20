@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/notice")
@@ -25,14 +26,14 @@ public class NoticeController {
     public List<Notice> findall(){
         return noticeService.findAll();
     }
-    @PostMapping("/pagelist")
-    public List<Notice> getPageNotice (@RequestBody Map<String, Long> map) {
-        return noticeService.getNoticeList(map.get("less"), map.get("greater"));
+    @PostMapping("/{page}")
+    public List<Notice> getPageNotice (@PathVariable("page") int page) {
+        return noticeService.getNoticeList(page);
     }
 
-    @PostMapping("/{nId}")
-    public List<Notice> getPageNotice (@PathVariable("nId") long nId) {
-        return noticeService.getNoticePage(nId);
+    @PostMapping("/content/{nId}")
+    public Optional<String> getPageNotice (@PathVariable("nId") long nId) {
+        return noticeService.getNoticeContent(nId);
     }
     @PostMapping("/create")
     public void noticeCreate (@RequestBody Notice notice) {

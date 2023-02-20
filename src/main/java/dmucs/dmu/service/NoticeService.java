@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -34,11 +35,11 @@ public class NoticeService {
         }
     }
 
-    public List<Notice> getNoticePage(long nId) {
-        return jpaNoticeRepository.findPage(nId);
+    public Optional<String> getNoticeContent(long nId) {
+        return jpaNoticeRepository.findContent(nId);
     }
-    public List<Notice> getNoticeList(Long less, Long greater) {
-        return jpaNoticeRepository.findPageList(less, greater);
+    public List<Notice> getNoticeList(int page) {
+        return jpaNoticeRepository.findPageList(page);
     }
 
     public Document noticeConnect (String noticeURL) {
