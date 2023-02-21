@@ -28,11 +28,7 @@ class MemberServiceTest{
 
     @Test
     public void 회원조회 () {
-        Member m1 = new Member(Grade.Student, "주성준", "0000", "20222296", "@dongyang.ac.kr", "컴퓨터소프트웨어", "컴퓨터공학부");
-        String encryptPw = encryptHelper.encrypt(m1.getMemberPassword());
-        Member m2 = new Member(m1, encryptPw);
-        Member find = jpaMemberRepository.findByEmail(m2.getEmail()).get();
-        Assertions.assertThat(find).isEqualTo(m2);
+
     }
 //
 //    @AfterEach

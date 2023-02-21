@@ -18,7 +18,7 @@ public class SignController {
     @PostMapping("/register")
     public String register (@RequestBody Member member) {
         memberService.join(member);
-        return memberService.findById(member.getStudentId()).get().toString();
+        return memberService.findByEmailId(member.getEmailId()).get() + "회원가입 성공";
     }
     @PostMapping("/login")
     public String login (@RequestBody MemberSigninDto member) {
