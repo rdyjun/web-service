@@ -1,26 +1,26 @@
 package dmucs.dmu.member;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
+@Table(name = "department")
 @NoArgsConstructor
 public class Department {
-    @Id @GeneratedValue
-    @Column(name = "dept_id")
-    private Long dept_id;
+    @Id @Column(name = "dept_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long dept_id = 0L;
     @Column(name = "dept_name")
     private String dept_name;
 
-    public Department (Long dept_id) {
-        this.dept_id = dept_id;
+    @ManyToOne
+    @JoinColumn(name = "div_id")
+    private Division division;
+
+    public Department (String dept_name) {
+        this.dept_name = dept_name;
     }
-    @OneToMany(mappedBy = "department")
-    @Column(name = "dept_id")
-    private List<Member> member;
 }

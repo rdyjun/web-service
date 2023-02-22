@@ -2,22 +2,19 @@ package dmucs.dmu.member;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "division")
 @NoArgsConstructor
 public class Division {
-    @Id
-    @Column(name = "div_id")
-    private Long div_id;
+    @Id @Column(name = "div_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long div_id = 0L;
     @Column(name = "div_name")
     private String div_name;
 
-    @OneToMany(mappedBy = "division")
-    @Column(name = "division")
-    private List<Member> member;
+    public Division (String div_name) {
+        this.div_name = div_name;
+    }
 }

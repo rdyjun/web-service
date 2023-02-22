@@ -7,6 +7,8 @@ import dmucs.dmu.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+
 
 @RestController
 @RequestMapping("/sign")
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class SignController {
     private final MemberService memberService;
     private final LoginService loginService;
+    private final EntityManager em;
 
     @PostMapping("/register")
     public String register (@RequestBody Member member) {

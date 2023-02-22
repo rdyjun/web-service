@@ -1,7 +1,6 @@
 package dmucs.dmu.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,16 +16,12 @@ public class MealService {
     final String mealURL = "https://www.dongyang.ac.kr/dongyang/130/subview.do?enc=Zm5jdDF8QEB8JTJGZGlldCUyRmRvbmd5YW5nJTJGMSUyRnZpZXcuZG8lM0Ztb25kYXklM0QyMDIzLjAxLjIzJTI2d2VlayUzRHByZSUyNg%3D%3D";
 
     public String[][] getThisWeekMeal () {
-        Connection conn = Jsoup.connect(mealURL);
         String[][] meal = new String[2][5];
         try{
-            Document document = conn.get();
-            meal = getTableBody(document);
+            meal = getTableBody(Jsoup.connect(mealURL).get());
         } catch (IOException e) {
             log.trace(e.getMessage());
         }
-
-
         return meal;
     }
 
