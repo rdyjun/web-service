@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Slf4j
@@ -23,17 +24,17 @@ public class DepartmentService {
     private final JpaDepartmentRepository jpaDepartmentRepository;
     private final JpaDivisionRepository jpaDivisionRepository;
     public void update () {
-        jpaDepartmentRepository.deleteAll();
-        jpaDivisionRepository.deleteAll();
-        jpaDepartmentRepository.saveAll(getDepartment());
+        jpaDepartmentRepository.deleteAllInBatch();
+        jpaDivisionRepository.deleteAllInBatch();
         jpaDivisionRepository.saveAll(getDivision());
+        jpaDepartmentRepository.saveAll(getDepartment());
     }
     public List<Division> getDivision () {
         try{
             Elements divTable = Jsoup.connect(DepartmentURL).get().select(".grid > .container > h2 > span");
             List<Division> divArr = new ArrayList<>();
-            for(String a : divTable.text().split(" ")){
-                divArr.add(new Division(a));
+            for(String name : divTable.text().split(" ")){
+                divArr.add(new Division(name));
             }
             return divArr;
         } catch (IOException e) {

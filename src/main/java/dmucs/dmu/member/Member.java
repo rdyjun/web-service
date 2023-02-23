@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @ToString
 public class Member {
-    @Id @Column(name = "memberCode")
+    @Id @Column(name = "memberCode", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
