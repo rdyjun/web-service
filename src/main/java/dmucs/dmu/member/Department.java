@@ -10,17 +10,18 @@ import javax.persistence.*;
 @Table(name = "department")
 @NoArgsConstructor
 public class Department {
-    @Id @Column(name = "dept_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long dept_id = 0L;
-    @Column(name = "dept_name")
-    private String dept_name;
+    @Id @Column(name = "deptId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id = 0L;
+    @Column(name = "deptName")
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "div_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "divId")
     private Division division;
 
-    public Department (String dept_name) {
-        this.dept_name = dept_name;
+    public Department (String name, Division divId) {
+        this.name = name;
+        this.division = divId;
     }
 }

@@ -8,13 +8,16 @@ import javax.persistence.*;
 @Table(name = "division")
 @NoArgsConstructor
 public class Division {
-    @Id @Column(name = "div_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long div_id = 0L;
-    @Column(name = "div_name")
-    private String div_name;
+    @Id @Column(name = "divId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id = 0L;
+    @Column(name = "divName")
+    private String name;
 
-    public Division (String div_name) {
-        this.div_name = div_name;
+    public Division (String name) {
+        this.name = name;
+    }
+    public Division (Long id) {
+        this.id = id;
     }
 }

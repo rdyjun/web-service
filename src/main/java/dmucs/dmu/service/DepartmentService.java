@@ -48,7 +48,7 @@ public class DepartmentService {
             Elements deptTable = Jsoup.connect(DepartmentURL).get().select(".depart_list > ul");
             for(int i = 0; i < deptTable.size(); i++){
                 for(int k = 0; k < deptTable.get(i).select("li").size(); k++){
-                    deptArr.add(new Department(deptTable.get(i).select("li").select(".a").text()));
+                    deptArr.add(new Department(deptTable.get(i).select("li").select(".a").text(), new Division((long) i)));
                 }
             }
             return deptArr;

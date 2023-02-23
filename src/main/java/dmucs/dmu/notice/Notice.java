@@ -6,7 +6,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dmu_notice")
+@Table(name = "notice")
 @Getter
 @ToString
 public class Notice {
@@ -18,7 +18,7 @@ public class Notice {
     private String noticeTitle;
     @Column(name = "noticeAuthor")
     private String noticeAuthor;
-    @Column(name = "noticeContent", length = 500000)
+    @Column(name = "noticeContent")
     private String noticeContent;
     @Column(name = "noticeDate")
     private String noticeDate;

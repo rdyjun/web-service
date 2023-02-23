@@ -12,5 +12,4 @@ public class MemberDTO{
     private String email;              // 이메일
     private String department;        // 학과
     private String division;           // 학부
-
 }
