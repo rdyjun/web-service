@@ -1,7 +1,6 @@
 package dmucs.dmu.member;
 
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
