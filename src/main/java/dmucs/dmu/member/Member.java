@@ -2,6 +2,7 @@ package dmucs.dmu.member;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -14,7 +15,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "memberGradeId", nullable = false)
+    @JoinColumn(name = "memberGradeId", nullable = false, insertable = false)
+    @ColumnDefault(value = "5")
     private Grade grade;            // 권한
     @Column(name = "memberPassword", nullable = false)
     private String memberPassword;        // 비밀번호
@@ -25,8 +27,7 @@ public class Member {
     private Department department;        // 학과
 
     public Member () {}
-    public Member (Grade grade, String memberPassword, String email, Department department){
-        this.grade = grade;
+    public Member (String memberPassword, String email, Department department){
         this.memberPassword = memberPassword;
         this.email = email;
         this.department = department;
