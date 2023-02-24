@@ -16,8 +16,8 @@ public class Department {
     @Column(name = "deptName", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "divId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "divId")
     private Division division;
 
     public Department (String name, Division divId) {
