@@ -44,6 +44,6 @@ public class Member {
         this.memberPassword = memberPassword;
     }
     public String getEmailId () {
-        return this.email.substring(0,this.email.lastIndexOf("@"));
+        return this.email.substring(0, this.email.lastIndexOf("@"));
     }
 }

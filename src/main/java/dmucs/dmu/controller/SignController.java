@@ -16,7 +16,6 @@ import javax.persistence.EntityManager;
 public class SignController {
     private final MemberService memberService;
     private final LoginService loginService;
-    private final EntityManager em;
 
     @PostMapping("/register")
     public String register (@RequestBody Member member) {

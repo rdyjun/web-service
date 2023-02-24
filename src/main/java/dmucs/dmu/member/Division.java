@@ -1,10 +1,12 @@
 package dmucs.dmu.member;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @Table(name = "division")
 @NoArgsConstructor
 public class Division {
