@@ -1,14 +1,17 @@
 package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Department;
+import dmucs.dmu.member.DepartmentDTO;
 import dmucs.dmu.member.Division;
 import dmucs.dmu.repository.JpaDepartmentRepository;
 import dmucs.dmu.repository.JpaDivisionRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,8 +22,14 @@ public class DepartmentController {
     private final JpaDivisionRepository jpaDivisionRepository;
 
     @PostMapping("/department")
-    public List<Department> getAllDepartment () {
-        return jpaDepartmentRepository.findAll();
+    public List<DepartmentDTO> getAllDepartment () {
+        Hibernate.initialize(jpaDivisionRepository.findAll());
+        List<DepartmentDTO> departmentDTO = new ArrayList<>();
+        for(Department dept : jpaDepartmentRepository.findAll()){
+            departmentDTO.add(new DepartmentDTO(dept));
+        }
+
+        return departmentDTO;
     }
     @PostMapping("/division")
     public List<Division> getAllDivision () {

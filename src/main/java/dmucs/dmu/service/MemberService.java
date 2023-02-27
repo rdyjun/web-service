@@ -25,6 +25,7 @@ public class MemberService {
     public void validateDuplicateManager (Member member) {
         jpaMemberRepository.findByEmailId(member.getEmailId())
                 .ifPresent(m -> {
+
                     throw new IllegalStateException("이미 존재하는 학생입니다.");
                 });
     }

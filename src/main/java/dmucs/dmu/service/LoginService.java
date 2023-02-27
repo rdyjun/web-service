@@ -1,9 +1,8 @@
 package dmucs.dmu.service;
 
 import dmucs.dmu.bcrypt.EncryptHelper;
-import dmucs.dmu.member.MemberDTO;
 import dmucs.dmu.member.Member;
-import dmucs.dmu.member.MemberSigninDto;
+import dmucs.dmu.member.MemberSigninDTO;
 import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ public class LoginService {
 
     private final JpaMemberRepository jpaMemberRepository;
     private final EncryptHelper encryptHelper;
-    public boolean login (MemberSigninDto member) {
+    public boolean login (MemberSigninDTO member) {
         Member loginedMember = jpaMemberRepository.findByEmail(member.getEmail()).get();
         if(loginedMember == null)
             return false;

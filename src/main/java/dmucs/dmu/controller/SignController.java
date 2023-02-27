@@ -1,13 +1,11 @@
 package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Member;
-import dmucs.dmu.member.MemberSigninDto;
+import dmucs.dmu.member.MemberSigninDTO;
 import dmucs.dmu.service.LoginService;
 import dmucs.dmu.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
 
 
 @RestController
@@ -23,7 +21,7 @@ public class SignController {
         return memberService.findByEmailId(member.getEmailId()).get() + "회원가입 성공";
     }
     @PostMapping("/login")
-    public String login (@RequestBody MemberSigninDto member) {
+    public String login (@RequestBody MemberSigninDTO member) {
         if(loginService.login(member))
             return "redirect:/";
         return "login";
