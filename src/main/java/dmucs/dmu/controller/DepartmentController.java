@@ -1,7 +1,7 @@
 package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Department;
-import dmucs.dmu.member.DepartmentDTO;
+import dmucs.dmu.member.DepartmentVO;
 import dmucs.dmu.member.Division;
 import dmucs.dmu.repository.JpaDepartmentRepository;
 import dmucs.dmu.repository.JpaDivisionRepository;
@@ -22,11 +22,11 @@ public class DepartmentController {
     private final JpaDivisionRepository jpaDivisionRepository;
 
     @PostMapping("/department")
-    public List<DepartmentDTO> getAllDepartment () {
+    public List<DepartmentVO> getAllDepartment () {
         Hibernate.initialize(jpaDivisionRepository.findAll());
-        List<DepartmentDTO> departmentDTO = new ArrayList<>();
+        List<DepartmentVO> departmentDTO = new ArrayList<>();
         for(Department dept : jpaDepartmentRepository.findAll()){
-            departmentDTO.add(new DepartmentDTO(dept));
+            departmentDTO.add(new DepartmentVO(dept));
         }
 
         return departmentDTO;

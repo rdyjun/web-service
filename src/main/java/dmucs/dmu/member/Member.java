@@ -1,16 +1,24 @@
 package dmucs.dmu.member;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dmu_member")
 @Getter
 @ToString
-public class Member {
+public class Member implements UserDetails {
     @Id @Column(name = "memberCode", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호
@@ -25,6 +33,10 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "deptId", nullable = false)
     private Department department;        // 학과
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
     public Member () {}
     public Member (String memberPassword, String email, Department department){
@@ -45,5 +57,44 @@ public class Member {
     }
     public String getEmailId () {
         return this.email.substring(0, this.email.lastIndexOf("@"));
+    }
+
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getPassword() {
+        return memberPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
