@@ -1,7 +1,7 @@
 package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Member;
-import dmucs.dmu.member.MemberSigninDTO;
+import dmucs.dmu.member.LoginVO;
 import dmucs.dmu.service.LoginService;
 import dmucs.dmu.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class SignController {
         return memberService.findByEmailId(member.getEmailId()).get() + "회원가입 성공";
     }
     @PostMapping("/login")
-    public String login (@RequestBody MemberSigninDTO member) {
+    public String login (@RequestBody LoginVO member) {
         if(loginService.login(member))
             return "redirect:/";
         return "login";
