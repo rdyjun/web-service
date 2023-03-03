@@ -1,9 +1,7 @@
 package dmucs.dmu.service;
 
 import dmucs.dmu.Component.JwtTokenProvider;
-import dmucs.dmu.bcrypt.EncryptHelper;
 import dmucs.dmu.member.TokenInfo;
-import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,9 +13,6 @@ import javax.transaction.Transactional;
 @Service
 @RequiredArgsConstructor
 public class LoginService {
-
-    private final JpaMemberRepository jpaMemberRepository;
-    private final EncryptHelper encryptHelper;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
 

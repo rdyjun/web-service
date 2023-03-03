@@ -1,6 +1,5 @@
 package dmucs.dmu.member;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Table(name = "department")
 @NoArgsConstructor
-public class Department {
+public class Department{
     @Id @Column(name = "deptId", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;

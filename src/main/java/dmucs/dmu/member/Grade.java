@@ -1,5 +1,7 @@
 package dmucs.dmu.member;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -8,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "memberGrade")
 @NoArgsConstructor
+@Getter
 public class Grade {
     @Id @Column(name = "memberGradeId", insertable = false)
     @ColumnDefault(value = "5")  //학생

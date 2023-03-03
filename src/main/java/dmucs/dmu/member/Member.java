@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 @Table(name = "dmu_member")
 @Getter
 @ToString
-public class Member implements UserDetails {
+public class Member
+        implements UserDetails {
     @Id @Column(name = "memberCode", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호
