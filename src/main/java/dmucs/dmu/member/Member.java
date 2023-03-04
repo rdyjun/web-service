@@ -1,21 +1,20 @@
 package dmucs.dmu.member;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
 
 @Entity
 @Table(name = "dmu_member")
+@DynamicInsert
 @Getter
 @ToString
 public class Member
@@ -24,9 +23,9 @@ public class Member
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "memberGradeId", nullable = false, insertable = false)
+    @JoinColumn(name = "memberGradeId", nullable = false)
     @ColumnDefault(value = "5")
-    private Grade grade;            // 권한
+    private Grade grade = new Grade(5L);            // 권한
     @Column(name = "memberPassword", nullable = false)
     private String memberPassword;        // 비밀번호
     @Column(name = "email", nullable = false)
@@ -35,10 +34,6 @@ public class Member
     @JoinColumn(name = "deptId", nullable = false)
     private Department department;        // 학과
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Builder.Default
-    private List<String> roles = new ArrayList<>();
-
     public Member () {}
     public Member (String memberPassword, String email, Department department){
         this.memberPassword = memberPassword;
@@ -46,15 +41,9 @@ public class Member
         this.department = department;
     }
     public Member (Member member, String pw) {
-        this.memberCode = member.getMemberCode();
-        this.grade = member.getGrade();
         this.memberPassword = pw;
         this.email = member.getEmail();
         this.department = member.getDepartment();
-    }
-    public Member (String email, String memberPassword) {
-        this.email = email;
-        this.memberPassword = memberPassword;
     }
     public String getEmailId () {
         return this.email.substring(0, this.email.lastIndexOf("@"));
@@ -64,9 +53,7 @@ public class Member
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        return Collections.singleton(new SimpleGrantedAuthority(this.grade.getName()));
     }
 
     @Override

@@ -23,9 +23,7 @@ public class SignController {
     }
     @PostMapping("/login")
     public TokenInfo login (@RequestBody LoginDTO member) {
-        String email = member.getEmail();
-        String password = member.getMemberPassword();
-        TokenInfo tokenInfo = loginService.login(email, password);
+        TokenInfo tokenInfo = loginService.login(member.getEmail(), member.getMemberPassword());
         return tokenInfo;
     }
 

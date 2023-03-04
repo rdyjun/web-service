@@ -1,18 +1,13 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.bcrypt.EncryptHelper;
-import dmucs.dmu.member.Grade;
-import dmucs.dmu.member.MemberDTO;
-import dmucs.dmu.member.Member;
+
 import dmucs.dmu.repository.JpaMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
@@ -22,9 +17,6 @@ class MemberServiceTest{
     JpaMemberRepository jpaMemberRepository;
     @Autowired
     MemberService memberService;
-
-    @Autowired
-    EncryptHelper encryptHelper;
 
     @Test
     public void 회원조회 () {

@@ -20,8 +20,7 @@ public class Department{
     @JoinColumn(name = "divId")
     private Division division;
 
-    public Department (String name, Division divId) {
+    public Department (String name) {
         this.name = name;
-        this.division = divId;
     }
 }
