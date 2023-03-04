@@ -25,7 +25,6 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 	//lombok
 	implementation 'org.projectlombok:lombok:1.18.22'
-	implementation 'org.mindrot:jbcrypt:0.4'
 	testImplementation 'junit:junit:4.13.1'
 	implementation 'org.jsoup:jsoup:1.14.2'
     testImplementation ('org.springframework.boot:spring-boot-starter-test') {

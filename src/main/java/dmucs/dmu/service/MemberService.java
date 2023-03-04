@@ -1,9 +1,9 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.bcrypt.EncryptHelper;
 import dmucs.dmu.member.Member;
 import dmucs.dmu.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,11 +12,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final JpaMemberRepository jpaMemberRepository;
-    private final EncryptHelper encryptHelper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // 가입
     public void join (Member member) {
-        Member m = new Member(member, encryptHelper.encrypt(member.getMemberPassword()));
+        Member m = new Member(member, bCryptPasswordEncoder.encode(member.getMemberPassword()));
         validateDuplicateManager(m);
         jpaMemberRepository.save(m);
     }
