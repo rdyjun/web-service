@@ -2,7 +2,7 @@ package dmucs.dmu.controller;
 
 import dmucs.dmu.member.Member;
 import dmucs.dmu.member.LoginDTO;
-import dmucs.dmu.member.TokenInfo;
+import dmucs.dmu.jwt.TokenInfo;
 import dmucs.dmu.service.LoginService;
 import dmucs.dmu.service.MemberService;
 import lombok.RequiredArgsConstructor;

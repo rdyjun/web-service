@@ -1,6 +1,6 @@
 package dmucs.dmu.Component;
 
-import dmucs.dmu.member.TokenInfo;
+import dmucs.dmu.jwt.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -36,11 +36,10 @@ public class JwtTokenProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
         long now = (new Date()).getTime(); // 현재 시간 가져오기
-        Date accessTokenExpiresIn = new Date(now + 1800000);  // 엑세스 토큰 유효 기간 30분
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
-                .setExpiration(accessTokenExpiresIn)
+                .setExpiration(new Date(now + 1800000)) // 엑세스 토큰 유효 기간 30분
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 

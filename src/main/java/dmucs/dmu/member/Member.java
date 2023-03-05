@@ -9,8 +9,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dmu_member")
@@ -53,8 +55,10 @@ public class Member
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(this.grade.getName()));
+//        return Collections.singleton(new SimpleGrantedAuthority(this.grade.getName()));
+        return Arrays.asList(this.grade.getName()).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
+
 
     @Override
     public String getPassword() {

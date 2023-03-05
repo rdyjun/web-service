@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/sign/register").permitAll()
                 .antMatchers("/sign/login").permitAll()
-                .antMatchers("/sign/test").hasAnyAuthority("staff")
+                .antMatchers("/sign/test").hasAnyRole("staff")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
