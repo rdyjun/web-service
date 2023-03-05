@@ -1,6 +1,6 @@
-package dmucs.dmu.repository;
+package dmucs.dmu.member.repository;
 
-import dmucs.dmu.member.Member;
+import dmucs.dmu.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

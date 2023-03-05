@@ -1,7 +1,8 @@
 package dmucs.dmu.service;
 
 
-import dmucs.dmu.repository.JpaMemberRepository;
+import dmucs.dmu.member.repository.JpaMemberRepository;
+import dmucs.dmu.member.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

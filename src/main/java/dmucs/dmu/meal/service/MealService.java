@@ -1,4 +1,4 @@
-package dmucs.dmu.service;
+package dmucs.dmu.meal.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;

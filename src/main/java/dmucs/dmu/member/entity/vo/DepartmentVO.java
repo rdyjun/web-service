@@ -1,4 +1,4 @@
-package dmucs.dmu.member.vo;
+package dmucs.dmu.member.entity.vo;
 
 import dmucs.dmu.member.entity.Department;
 import lombok.Getter;

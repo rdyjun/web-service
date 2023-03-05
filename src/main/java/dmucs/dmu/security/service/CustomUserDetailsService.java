@@ -1,13 +1,12 @@
-package dmucs.dmu.service;
+package dmucs.dmu.security.service;
 
-import dmucs.dmu.member.Member;
-import dmucs.dmu.repository.JpaMemberRepository;
+import dmucs.dmu.member.entity.Member;
+import dmucs.dmu.member.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service

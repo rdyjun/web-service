@@ -1,4 +1,4 @@
-package dmucs.dmu.notice;
+package dmucs.dmu.notice.entity;
 
 import lombok.Getter;
 import lombok.ToString;

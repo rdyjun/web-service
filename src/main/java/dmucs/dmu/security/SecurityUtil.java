@@ -1,4 +1,4 @@
-package dmucs.dmu.Security;
+package dmucs.dmu.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

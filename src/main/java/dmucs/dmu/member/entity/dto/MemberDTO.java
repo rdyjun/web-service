@@ -1,4 +1,4 @@
-package dmucs.dmu.member.dto;
+package dmucs.dmu.member.entity.dto;
 
 import dmucs.dmu.member.entity.Grade;
 import lombok.Getter;

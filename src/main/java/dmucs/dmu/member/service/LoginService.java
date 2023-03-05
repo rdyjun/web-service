@@ -1,13 +1,15 @@
-package dmucs.dmu.service;
+package dmucs.dmu.member.service;
 
 import dmucs.dmu.security.Component.JwtTokenProvider;
 import dmucs.dmu.security.entity.TokenInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 @Service

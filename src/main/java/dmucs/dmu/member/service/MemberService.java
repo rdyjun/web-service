@@ -1,4 +1,4 @@
-package dmucs.dmu.service;
+package dmucs.dmu.member.service;
 
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.repository.JpaMemberRepository;

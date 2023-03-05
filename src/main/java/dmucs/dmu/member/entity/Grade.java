@@ -1,4 +1,4 @@
-package dmucs.dmu.member;
+package dmucs.dmu.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

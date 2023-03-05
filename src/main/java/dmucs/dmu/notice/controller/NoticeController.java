@@ -1,4 +1,4 @@
-package dmucs.dmu.controller;
+package dmucs.dmu.notice.controller;
 
 import dmucs.dmu.notice.entity.Notice;
 import dmucs.dmu.notice.repository.JpaNoticeRepository;

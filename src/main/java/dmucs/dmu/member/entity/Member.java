@@ -1,4 +1,4 @@
-package dmucs.dmu.member;
+package dmucs.dmu.member.entity;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity

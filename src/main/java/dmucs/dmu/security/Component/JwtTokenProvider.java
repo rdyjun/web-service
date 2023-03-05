@@ -1,4 +1,4 @@
-package dmucs.dmu.Component;
+package dmucs.dmu.security.Component;
 
 import dmucs.dmu.security.entity.TokenInfo;
 import io.jsonwebtoken.*;

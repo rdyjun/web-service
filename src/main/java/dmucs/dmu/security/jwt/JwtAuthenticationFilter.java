@@ -1,4 +1,4 @@
-package dmucs.dmu.security;
+package dmucs.dmu.security.jwt;
 
 import dmucs.dmu.security.Component.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

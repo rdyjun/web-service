@@ -1,4 +1,4 @@
-package dmucs.dmu.controller;
+package dmucs.dmu.meal.controller;
 
 import dmucs.dmu.meal.service.MealService;
 import lombok.RequiredArgsConstructor;

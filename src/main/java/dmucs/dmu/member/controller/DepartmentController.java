@@ -1,7 +1,7 @@
-package dmucs.dmu.controller;
+package dmucs.dmu.member.controller;
 
 import dmucs.dmu.member.entity.Department;
-import dmucs.dmu.member.vo.DepartmentVO;
+import dmucs.dmu.member.entity.vo.DepartmentVO;
 import dmucs.dmu.member.entity.Division;
 import dmucs.dmu.member.repository.JpaDepartmentRepository;
 import dmucs.dmu.member.repository.JpaDivisionRepository;

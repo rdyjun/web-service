@@ -1,11 +1,8 @@
 package dmucs.dmu.repositroy;
 
-import dmucs.dmu.member.Department;
-import dmucs.dmu.member.Grade;
-import dmucs.dmu.member.MemberDTO;
-import dmucs.dmu.member.Member;
-import dmucs.dmu.repository.JpaMemberRepository;
-import org.assertj.core.api.Assertions;
+import dmucs.dmu.member.entity.Department;
+import dmucs.dmu.member.entity.Member;
+import dmucs.dmu.member.repository.JpaMemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

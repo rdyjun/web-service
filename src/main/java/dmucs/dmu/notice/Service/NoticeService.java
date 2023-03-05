@@ -1,4 +1,4 @@
-package dmucs.dmu.service;
+package dmucs.dmu.notice.Service;
 
 import dmucs.dmu.notice.entity.Notice;
 import dmucs.dmu.notice.repository.JpaNoticeRepository;
