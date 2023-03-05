@@ -40,6 +40,7 @@ public class JwtTokenProvider {
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
                 .setExpiration(new Date(now + 1800000)) // 엑세스 토큰 유효 기간 30분
+//                .setExpiration(new Date(now + 1))  // 토큰 유효기간 테스트용
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 

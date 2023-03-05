@@ -1,11 +1,13 @@
 package dmucs.dmu.member.controller;
 
+
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.entity.dto.LoginDTO;
 import dmucs.dmu.security.entity.TokenInfo;
 import dmucs.dmu.member.service.LoginService;
 import dmucs.dmu.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class SignController {
     }
     @PostMapping("/login")
     @ResponseBody
-    public TokenInfo login (@RequestBody LoginDTO member, HttpServletResponse response) {
+    public ResponseEntity<TokenInfo> login (@RequestBody LoginDTO member, HttpServletResponse response) {
         TokenInfo tokenInfo = loginService.login(member.getEmail(), member.getMemberPassword());
 
         ResponseCookie cookie = ResponseCookie.from("refreshToken", tokenInfo.getRefreshToken())
@@ -40,7 +42,7 @@ public class SignController {
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
         tokenInfo.setRefreshToken("httponly");
-        return (tokenInfo);
+        return new ResponseEntity<>(tokenInfo, HttpStatus.OK);
     }
 
     @PostMapping("/test")
