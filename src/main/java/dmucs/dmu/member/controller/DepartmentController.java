@@ -1,10 +1,10 @@
 package dmucs.dmu.controller;
 
-import dmucs.dmu.member.Department;
-import dmucs.dmu.member.DepartmentVO;
-import dmucs.dmu.member.Division;
-import dmucs.dmu.repository.JpaDepartmentRepository;
-import dmucs.dmu.repository.JpaDivisionRepository;
+import dmucs.dmu.member.entity.Department;
+import dmucs.dmu.member.vo.DepartmentVO;
+import dmucs.dmu.member.entity.Division;
+import dmucs.dmu.member.repository.JpaDepartmentRepository;
+import dmucs.dmu.member.repository.JpaDivisionRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.PostMapping;

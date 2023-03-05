@@ -1,6 +1,6 @@
 package dmucs.dmu.Component;
 
-import dmucs.dmu.jwt.TokenInfo;
+import dmucs.dmu.security.entity.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

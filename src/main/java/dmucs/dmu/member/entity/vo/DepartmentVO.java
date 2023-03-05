@@ -1,5 +1,6 @@
-package dmucs.dmu.member;
+package dmucs.dmu.member.vo;
 
+import dmucs.dmu.member.entity.Department;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

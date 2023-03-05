@@ -1,6 +1,6 @@
-package dmucs.dmu.jwt;
+package dmucs.dmu.security;
 
-import dmucs.dmu.Component.JwtTokenProvider;
+import dmucs.dmu.security.Component.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

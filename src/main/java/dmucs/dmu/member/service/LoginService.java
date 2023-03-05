@@ -1,7 +1,7 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.Component.JwtTokenProvider;
-import dmucs.dmu.jwt.TokenInfo;
+import dmucs.dmu.security.Component.JwtTokenProvider;
+import dmucs.dmu.security.entity.TokenInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

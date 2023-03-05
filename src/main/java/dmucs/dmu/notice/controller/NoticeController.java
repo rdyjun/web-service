@@ -1,13 +1,12 @@
 package dmucs.dmu.controller;
 
-import dmucs.dmu.notice.Notice;
-import dmucs.dmu.repository.JpaNoticeRepository;
-import dmucs.dmu.service.NoticeService;
+import dmucs.dmu.notice.entity.Notice;
+import dmucs.dmu.notice.repository.JpaNoticeRepository;
+import dmucs.dmu.notice.Service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController

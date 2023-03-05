@@ -1,4 +1,4 @@
-package dmucs.dmu.member;
+package dmucs.dmu.member.dto;
 
 import lombok.Getter;
 

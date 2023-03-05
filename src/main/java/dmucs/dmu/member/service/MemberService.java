@@ -1,7 +1,7 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.member.Member;
-import dmucs.dmu.repository.JpaMemberRepository;
+import dmucs.dmu.member.entity.Member;
+import dmucs.dmu.member.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

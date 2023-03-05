@@ -1,6 +1,6 @@
 package dmucs.dmu.controller;
 
-import dmucs.dmu.service.MealService;
+import dmucs.dmu.meal.service.MealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;

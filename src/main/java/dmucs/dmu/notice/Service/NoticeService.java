@@ -1,7 +1,7 @@
 package dmucs.dmu.service;
 
-import dmucs.dmu.notice.Notice;
-import dmucs.dmu.repository.JpaNoticeRepository;
+import dmucs.dmu.notice.entity.Notice;
+import dmucs.dmu.notice.repository.JpaNoticeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
