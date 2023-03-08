@@ -42,6 +42,7 @@ public class SignController {
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
         tokenInfo.setRefreshToken("httponly");
+
         return new ResponseEntity<>(tokenInfo, HttpStatus.OK);
     }
 
