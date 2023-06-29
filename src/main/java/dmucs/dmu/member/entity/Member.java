@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -18,8 +19,7 @@ import java.util.stream.Collectors;
 @DynamicInsert
 @Getter
 @ToString
-public class Member
-        implements UserDetails {
+public class Member implements UserDetails, Serializable {
     @Id @Column(name = "memberCode", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberCode = 0L;         // 고유번호

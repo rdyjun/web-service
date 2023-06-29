@@ -41,7 +41,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                     TokenInfo tk =  jwtTokenProvider.generateToken(securityContext.getAuthentication());
                 }
             }
-
         }
         chain.doFilter(request, response);
     }
