@@ -2,14 +2,17 @@ package dmucs.dmu.classroom.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dmucs.dmu.member.entity.Member;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@Table(name = "classroomReservation")
 @IdClass(ClassRoomReservationKey.class)
 public class ClassRoomReservation {
 
@@ -27,4 +30,11 @@ public class ClassRoomReservation {
     @Column(name = "purpose")
     private String purpose;
 
+    public ClassRoomReservation (ClassRoomReservationKey classRoomReservationKey, String roomNumber, String category, String purpose) {
+        this.member = classRoomReservationKey.getMember();
+        this.date = classRoomReservationKey.getDate();
+        this.roomNumber = roomNumber;
+        this.category = category;
+        this.purpose = purpose;
+    }
 }
