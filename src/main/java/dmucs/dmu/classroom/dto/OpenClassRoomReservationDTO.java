@@ -1,6 +1,6 @@
 package dmucs.dmu.classroom.dto;
 
-public class ClassRoomReservationDTO {
+public class OpenClassRoomReservationDTO {
 
     private Long memberCode;
     private String date;

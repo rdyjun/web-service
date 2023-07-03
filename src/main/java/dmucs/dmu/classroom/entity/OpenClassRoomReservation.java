@@ -12,16 +12,17 @@ import java.util.Date;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "classroomReservation")
-@IdClass(ClassRoomReservationKey.class)
-public class ClassRoomReservation {
+@IdClass(OpenClassRoomReservationKey.class)
+public class OpenClassRoomReservation {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberCode")
     private Member member;
-    @Id
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    @Id @Column(name = "rentalDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "Asia/Seoul")
     private Date date;
     @Column(name = "room_number")
     private String roomNumber;
@@ -30,11 +31,4 @@ public class ClassRoomReservation {
     @Column(name = "purpose")
     private String purpose;
 
-    public ClassRoomReservation (ClassRoomReservationKey classRoomReservationKey, String roomNumber, String category, String purpose) {
-        this.member = classRoomReservationKey.getMember();
-        this.date = classRoomReservationKey.getDate();
-        this.roomNumber = roomNumber;
-        this.category = category;
-        this.purpose = purpose;
-    }
 }
