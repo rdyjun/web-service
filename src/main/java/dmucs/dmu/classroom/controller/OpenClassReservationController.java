@@ -2,6 +2,7 @@ package dmucs.dmu.classroom.controller;
 
 import dmucs.dmu.classroom.dto.OpenClassRoomReservationDTO;
 import dmucs.dmu.classroom.service.OpenClassRoomReservationService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 
+@Api(value="ApiController v1")
 @RestController
 @RequiredArgsConstructor
 public class OpenClassReservationController {
