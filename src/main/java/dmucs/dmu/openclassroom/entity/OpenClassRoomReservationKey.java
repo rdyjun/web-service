@@ -1,4 +1,4 @@
-package dmucs.dmu.classroom.entity;
+package dmucs.dmu.openclassroom.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

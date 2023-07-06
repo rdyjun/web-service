@@ -1,4 +1,4 @@
-package dmucs.dmu.classroom.dto;
+package dmucs.dmu.openclassroom.dto;
 
 public class OpenClassRoomReservationDTO {
 

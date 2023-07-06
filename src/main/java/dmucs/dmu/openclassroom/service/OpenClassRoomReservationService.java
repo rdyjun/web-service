@@ -1,9 +1,9 @@
-package dmucs.dmu.classroom.service;
+package dmucs.dmu.openclassroom.service;
 
-import dmucs.dmu.classroom.dto.OpenClassRoomReservationDTO;
-import dmucs.dmu.classroom.entity.OpenClassRoomReservation;
-import dmucs.dmu.classroom.entity.OpenClassRoomReservationKey;
-import dmucs.dmu.classroom.repository.OpenClassRoomReservationJpa;
+import dmucs.dmu.openclassroom.dto.OpenClassRoomReservationDTO;
+import dmucs.dmu.openclassroom.entity.OpenClassRoomReservation;
+import dmucs.dmu.openclassroom.entity.OpenClassRoomReservationKey;
+import dmucs.dmu.openclassroom.repository.OpenClassRoomReservationJpa;
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.repository.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;

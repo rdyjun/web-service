@@ -1,7 +1,7 @@
-package dmucs.dmu.classroom.controller;
+package dmucs.dmu.openclassroom.controller;
 
-import dmucs.dmu.classroom.dto.OpenClassRoomReservationDTO;
-import dmucs.dmu.classroom.service.OpenClassRoomReservationService;
+import dmucs.dmu.openclassroom.dto.OpenClassRoomReservationDTO;
+import dmucs.dmu.openclassroom.service.OpenClassRoomReservationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

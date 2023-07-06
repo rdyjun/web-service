@@ -1,4 +1,4 @@
-package dmucs.dmu.classroom.entity;
+package dmucs.dmu.openclassroom.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dmucs.dmu.member.entity.Member;
