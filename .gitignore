@@ -2,6 +2,9 @@ src/main/resources/application.properties
 #src/main/java/dmucs/dmu/config/WebConfig.java
 #src/main/java/dmucs/dmu/config/WebSecurityConfig.java
 
+# DS_Store
+**/.DS_Store
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij
