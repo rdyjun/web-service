@@ -1,4 +1,4 @@
-#src/main/resources/application.properties
+src/main/resources/application.properties
 #src/main/java/dmucs/dmu/config/WebConfig.java
 #src/main/java/dmucs/dmu/config/WebSecurityConfig.java
 
