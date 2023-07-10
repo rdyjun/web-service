@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "classroomReservation")
-public class OpenClassRoomReservation {
+public class OpenClassroomReservation {
     @Id @Column(name = "rentalId")
     @ManyToOne(fetch = FetchType.LAZY)
     private ClassroomReservation classroomReservation;

@@ -4,11 +4,10 @@ import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.repository.JpaMemberRepository;
 import dmucs.dmu.openclassroom.dto.ClassroomReservationDTO;
 import dmucs.dmu.openclassroom.entity.ClassroomReservation;
-import dmucs.dmu.openclassroom.entity.OpenClassRoomReservation;
+import dmucs.dmu.openclassroom.entity.OpenClassroomReservation;
 import lombok.RequiredArgsConstructor;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 
@@ -16,12 +15,7 @@ import java.util.Optional;
 public class OpenClassroomReservationService {
     private final JpaMemberRepository jpaMemberRepository;
     public void reservationToRoom (ClassroomReservation classroomReservation) throws ParseException {
-
-
-
-        OpenClassRoomReservationKey classRoomReservationKey = new OpenClassRoomReservationKey(member.get().getMemberCode(), formatter.parse(classRoomReservationDTO.getDate()));
-
-        OpenClassRoomReservation classRoomReservation = new OpenClassRoomReservation(
+        OpenClassroomReservation classRoomReservation = new OpenClassroomReservation(
                 member.get(),
                 classRoomReservationKey.getDate(),
                 classRoomReservationDTO.getRoomNumber(),
