@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "classroomReservation")
+@Table(name = "oepnClassroom")
 public class OpenClassroomReservation {
     @Id @Column(name = "rentalId")
     @ManyToOne(fetch = FetchType.LAZY)

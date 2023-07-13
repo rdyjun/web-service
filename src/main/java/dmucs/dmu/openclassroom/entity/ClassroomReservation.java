@@ -10,6 +10,7 @@ import java.util.Date;
 @Entity
 @Getter
 @AllArgsConstructor
+@Table(name = "rental")
 public class ClassroomReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -24,11 +24,11 @@ public class OpenClassroomReservationService {
         validateDuplicateManager(classRoomReservationKey);
         classRoomReservationJpa.save(classRoomReservation);
     }
-    public boolean checked(ClassroomReservationDTO classroomReservationDTO) {
+    public Member checked(ClassroomReservationDTO classroomReservationDTO) {
         Optional<Member> member = jpaMemberRepository.findById(classroomReservationDTO.getMemberCode());
         if (member.isEmpty()) {
             throw new IllegalStateException("존재하지 않는 회원입니다.");
         }
-        return true;
+        return member.get();
     }
 }
