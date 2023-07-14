@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "rooms")
 public class Classroom {
-    @Id @Column(name = "rentalId")
+    @Id @Column(name = "roomId")
     private String classroomId;
     @Column(name = "classStatus")
     private boolean classroomStatus;

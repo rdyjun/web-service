@@ -6,15 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "oepnClassroom")
-public class OpenClassroomReservation {
-    @Id @Column(name = "rentalId")
-    @ManyToOne(fetch = FetchType.LAZY)
+@Table(name = "openClassroom")
+public class OpenClassroomReservation implements Serializable {
+    @Id @JoinColumn(name = "rentalId")
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private ClassroomReservation classroomReservation;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberCode")

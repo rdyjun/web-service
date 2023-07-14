@@ -15,7 +15,7 @@ public class ClassroomReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;
-    @Column(name = "roomId")
+    @JoinColumn(name = "roomId")
     @ManyToOne(fetch = FetchType.LAZY)
     private Classroom roomId;
     @Column(name = "rentalDate")
