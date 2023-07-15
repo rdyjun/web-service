@@ -1,8 +1,8 @@
-package dmucs.dmu.openclassroom.service;
+package dmucs.dmu.classroomreservation.service;
 
-import dmucs.dmu.openclassroom.entity.ClassroomReservation;
-import dmucs.dmu.openclassroom.entity.NomalyClassroomReservation;
-import dmucs.dmu.openclassroom.repository.NomalyClassroomReservationJPA;
+import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
+import dmucs.dmu.classroomreservation.entity.NomalyClassroomReservation;
+import dmucs.dmu.classroomreservation.repository.NomalyClassroomReservationJPA;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

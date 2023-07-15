@@ -1,4 +1,4 @@
-package dmucs.dmu.openclassroom.entity;
+package dmucs.dmu.classroomreservation.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

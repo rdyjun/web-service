@@ -1,4 +1,4 @@
-package dmucs.dmu.openclassroom.dto;
+package dmucs.dmu.classroomreservation.dto;
 
 import lombok.Getter;
 

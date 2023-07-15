@@ -1,6 +1,6 @@
-package dmucs.dmu.openclassroom.repository;
+package dmucs.dmu.classroomreservation.repository;
 
-import dmucs.dmu.openclassroom.entity.ClassroomReservation;
+import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
