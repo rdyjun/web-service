@@ -1,20 +1,27 @@
-package dmucs.dmu.openclassroom.entity;
+package dmucs.dmu.classroomreservation.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "normal_classroom")
-public class NomalyClassroomReservation implements Serializable {
-    @Id @JoinColumn(name = "rentalId")
-    @OneToOne(fetch = FetchType.LAZY)
+
+public class NomalyClassroomReservation {
+    @Id
+    private Long id;
+
+    @JoinColumn(name = "rentalId")
+    @OneToOne
     @MapsId
     private ClassroomReservation classroomReservation;
     @Column(name = "purpose")
     private String purpose;
+
+    public NomalyClassroomReservation (ClassroomReservation classroomReservation, String purpose) {
+        this.classroomReservation = classroomReservation;
+        this.purpose = purpose;
+    }
 }

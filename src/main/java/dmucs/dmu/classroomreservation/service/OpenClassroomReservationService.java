@@ -1,10 +1,10 @@
 package dmucs.dmu.classroomreservation.service;
 
+import dmucs.dmu.classroomreservation.entity.OpenClassroomReservation;
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.repository.JpaMemberRepository;
 import dmucs.dmu.classroomreservation.dto.ClassroomReservationDTO;
 import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
-import dmucs.dmu.classroomreservation.entity.OpenClassroomReservation;
 import dmucs.dmu.classroomreservation.repository.OpenClassroomReservationJPA;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,6 @@ public class OpenClassroomReservationService {
         } else {
             throw new IllegalStateException("해당 날짜에 이미 대여한 기록이 존재합니다.");
         }
-
     }
     public boolean isNotDuplicate (Date date, Member member) {
         ArrayList<ClassroomReservation> classroomReservationArrayList = classroomReservationService.findByDate(date);

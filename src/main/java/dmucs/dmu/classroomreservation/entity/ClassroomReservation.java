@@ -3,6 +3,7 @@ package dmucs.dmu.classroomreservation.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "rental")
 public class ClassroomReservation {
     @Id

@@ -17,8 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ClassroomReservationService {
     private final ClassroomReservationJPA classroomReservationJPA;
-    private final OpenClassroomReservationService openClassroomReservationService;
-    private final NomalyClassroomReservationService nomalyClassroomReservationService;
     public ClassroomReservation reservationToRoom (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date date = formatter.parse(classroomReservationDTO.getDate());
