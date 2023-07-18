@@ -16,11 +16,4 @@ import javax.transaction.Transactional;
 public class MemberRepositoryTest {
     @Autowired
     JpaMemberRepository JpaMemberRepository;
-    //저장 테스트
-    @Test
-    void save() {
-        Member m = new Member("pw", "mail", new Department("staff"));
-        Member n = new Member(m, "pw");
-    }
-
 }

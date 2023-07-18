@@ -1,5 +1,6 @@
 package dmucs.dmu.member.entity;
 
+import dmucs.dmu.member.entity.dto.MemberDTO;
 import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
@@ -36,15 +37,16 @@ public class Member implements UserDetails, Serializable {
     private Department department;        // 학과
 
     public Member () {}
-    public Member (String memberPassword, String email, Department department){
+    public Member (MemberDTO memberDTO){
+        this.grade = memberDTO.getMemberGrade();
         this.memberPassword = memberPassword;
         this.email = email;
         this.department = department;
     }
-    public Member (Member member, String pw) {
+    public Member (MemberDTO member, String pw) {
         this.memberPassword = pw;
         this.email = member.getEmail();
-        this.department = member.getDepartment();
+        this.department = new Department(member.getDepartment());
     }
     public String getEmailId () {
         return this.email.substring(0, this.email.lastIndexOf("@"));

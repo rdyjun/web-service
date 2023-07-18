@@ -3,6 +3,7 @@ package dmucs.dmu.member.controller;
 
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.entity.dto.LoginDTO;
+import dmucs.dmu.member.entity.dto.MemberDTO;
 import dmucs.dmu.security.entity.TokenInfo;
 import dmucs.dmu.member.service.LoginService;
 import dmucs.dmu.member.service.MemberService;
@@ -24,9 +25,9 @@ public class SignController {
     private final LoginService loginService;
 
     @PostMapping("/register")
-    public String register (@RequestBody Member member) {
+    public String register (@RequestBody MemberDTO member) {
         memberService.join(member);
-        return memberService.findByEmailId(member.getEmailId()).get() + "회원가입 성공";
+        return memberService.findByEmailId(member.getEmail()).get() + "회원가입 성공";
     }
     @PostMapping("/login")
     @ResponseBody
