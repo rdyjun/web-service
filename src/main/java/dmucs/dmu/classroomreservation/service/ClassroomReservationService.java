@@ -6,85 +6,72 @@ import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
 import dmucs.dmu.classroomreservation.entity.RentalType;
 import dmucs.dmu.classroomreservation.repository.ClassroomReservationJPA;
 import dmucs.dmu.member.entity.Member;
-import dmucs.dmu.member.repository.JpaMemberRepository;
 import dmucs.dmu.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ClassroomReservationService {
     private final ClassroomReservationJPA classroomReservationJPA;
-    private final JpaMemberRepository jpaMemberRepository;
     private final MemberService memberService;
-    public ClassroomReservation reservationToRoom (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
+    @Transactional
+    public void reservationToRoom (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date date = formatter.parse(classroomReservationDTO.getDate());
+        ClassroomReservation classroomReservation;
 
-        if (classroomReservationDTO.getType() == RentalType.OPEN) {
-            if (memberService.isMemberPresent(classroomReservationDTO.getMemberCode())) {
-                if (isNotDuplicated(date, reservationer)) {
-                    ClassroomReservation classroomReservation = new ClassroomReservation(
-                            0L,
-                            new Classroom(classroomReservationDTO.getRoomId(), false),
-                            date,
-                            classroomReservationDTO.getType(),
-                            reservationer,
-                            classroomReservationDTO.getPurpose()
-                    );
-                } else {
-                    ClassroomReservation classroomReservation = new ClassroomReservation(
-                            0L,
-                            new Classroom(classroomReservationDTO.getRoomId(), false),
-                            date,
-                            classroomReservationDTO.getType(),
-                            null,
-                            classroomReservationDTO.getPurpose()
-                    );
-                }
-                } else {
-                    throw new IllegalStateException("해당 날짜에 이미 대여한 기록이 존재합니다.");
-                }
-            } else {
-                throw new IllegalStateException("요청한 회원이 존재하지 않습니다.");
-            }
+        if (RentalType.valueOf(classroomReservationDTO.getType()) == RentalType.OPEN) {
+            Member member = memberService.getMemberById(classroomReservationDTO.getMemberCode());
+            reservationDuplicateManager(date, member);
+            classroomReservation = new ClassroomReservation(
+                    0L,
+                    new Classroom(classroomReservationDTO.getRoomId(), false),
+                    date,
+                    RentalType.valueOf(classroomReservationDTO.getType()),
+                    member,
+                    classroomReservationDTO.getPurpose()
+            );
+        } else {
+            classroomReservation = new ClassroomReservation(
+                0L,
+                new Classroom(classroomReservationDTO.getRoomId(), false),
+                date,
+                RentalType.valueOf(classroomReservationDTO.getType()),
+                null,
+                classroomReservationDTO.getPurpose()
+            );
+        }
 
-        return classroomReservationJPA.save(classroomReservation);
+        classroomReservationJPA.save(classroomReservation);
     }
-    public ArrayList<ClassroomReservation> findByDate(Date date) {
-        ArrayList<ClassroomReservation> arr = new ArrayList<>();
-        for (Optional<ClassroomReservation> cr : classroomReservationJPA.findByDate(date)) {
-            if (cr.isPresent())
-                arr.add(cr.get());
-            else
-                break;
-        }
-        return arr;
+    /** 날짜에 따른 특정 강의실 대여 정보 반환*/
+    public ArrayList<ClassroomReservation> getByDateAndClassIdAndType(Date date, Classroom roomId, RentalType type) {
+        return classroomReservationJPA.findByDateAndRoomIdAndType(date, roomId, type);
     }
-    public ArrayList<ClassroomReservation> getClassByDateAndClassId (Date date, String classId) {
-        ArrayList<ClassroomReservation> arr = new ArrayList<>();
-        for (Optional<ClassroomReservation> cr : classroomReservationJPA.findByDateAndRoomId(date, classId)) {
-            if (cr.isPresent())
-                arr.add(cr.get());
-            else
-                break;
-        }
-        return arr;
+
+    /** [공개 강의실] 날짜와 회원 기록을 조회 */
+    public void reservationDuplicateManager (Date date, Member memberId) {
+        if (classroomReservationJPA.findByMemberAndDate(memberId, date).isPresent())
+            throw new IllegalStateException("해당 날짜에 대여한 기록이 존재합니다.");
     }
-    public boolean isNotDuplicated (Date date, Member member) {
-        ArrayList<ClassroomReservation> classroomReservationArrayList = classroomReservationService.findByDate(date);
-        for (ClassroomReservation cr : classroomReservationArrayList) {
-            Optional<ClassroomReservation> opcls = ClassroomReservationJPA.findById(cr);
-            if (opcls.isPresent() && opcls.get().getMember().getMemberCode().equals(member.getMemberCode())) {
-                return true;
-            }
+
+    public ArrayList<ClassroomReservationDTO> getClassReservationList (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Date date = format.parse(classroomReservationDTO.getDate());
+        ArrayList<ClassroomReservationDTO> classroomReservationDTOS = new ArrayList<>();
+        for (ClassroomReservation c : getByDateAndClassIdAndType(
+                date,
+                new Classroom(classroomReservationDTO.getRoomId(), false),
+                RentalType.OPEN)) {
+            classroomReservationDTOS.add(new ClassroomReservationDTO(c));
         }
-        return false;
+        return classroomReservationDTOS;
     }
 }

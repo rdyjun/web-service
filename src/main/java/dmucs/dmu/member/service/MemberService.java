@@ -22,7 +22,7 @@ public class MemberService {
         jpaMemberRepository.save(m);
     }
 
-    // 중복 확인
+    /** 중복 확인 */
     public void validateDuplicateManager (Member member) {
         jpaMemberRepository.findByEmailId(member.getEmail())
                 .ifPresent(m -> {
@@ -32,7 +32,10 @@ public class MemberService {
     public Optional<Member> findByEmailId (String EmailId) {
         return jpaMemberRepository.findByEmailId(EmailId);
     }
-    public boolean isMemberPresent (Long memberId) {
-        return !jpaMemberRepository.findById(memberId).isEmpty();
+    /** 멤버 아이디로 멤버 객체 찾기 */
+    public Member getMemberById (Long memberId) {
+        return jpaMemberRepository.findById(memberId).orElseThrow(() -> {
+            throw new IllegalStateException("회원이 존재하지 않습니다.");
+        });
     }
 }

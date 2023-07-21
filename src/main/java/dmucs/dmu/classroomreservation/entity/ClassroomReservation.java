@@ -20,7 +20,7 @@ public class ClassroomReservation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "roomId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Classroom roomId;
     @Column(name = "rentalDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "Asia/Seoul")
@@ -28,7 +28,7 @@ public class ClassroomReservation implements Serializable {
     @Column(name = "rentalType")
     @Enumerated(EnumType.STRING)
     private RentalType type;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "memberCode")
     private Member member;
     @Column(name = "purpose")
