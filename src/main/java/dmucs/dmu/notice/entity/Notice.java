@@ -1,19 +1,17 @@
 package dmucs.dmu.notice.entity;
 
-import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "notice")
-@Getter
 @ToString
 public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "noticeId")
-    private Long noticeId = 0L;
+    private Long noticeId;
     @Column(name = "noticeTitle")
     private String noticeTitle;
     @Column(name = "noticeAuthor")

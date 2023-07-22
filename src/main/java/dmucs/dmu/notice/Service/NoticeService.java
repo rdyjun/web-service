@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class NoticeService {
     private final JpaNoticeRepository jpaNoticeRepository;
     private final String univercityURL = "https://www.dongyang.ac.kr";
     private final String univercityNoticeURL = "/dongyang/129/subview.do";
-
+    private final int pageListSize = 10;
     public void save (Notice notice) {
         jpaNoticeRepository.save(notice);
     }
@@ -28,7 +29,6 @@ public class NoticeService {
         return jpaNoticeRepository.findAll();
     }
     public void noticeUpdate () {
-
         for(Notice noticeList : getRecentNotice(noticeConnect(univercityURL + univercityNoticeURL), "대학")){
             save(noticeList);
         }
@@ -38,9 +38,10 @@ public class NoticeService {
         return jpaNoticeRepository.findContent(nId);
     }
     public List<Notice> getNoticeList(int page) {
-        return jpaNoticeRepository.findPageList(page);
+        return jpaNoticeRepository.findPageList(page * pageListSize);
     }
-
+    
+    /** URL에 대한 커넥터 가져오기 */
     public Document noticeConnect (String noticeURL) {
         try {
             return Jsoup.connect(noticeURL).get();
@@ -49,19 +50,13 @@ public class NoticeService {
         }
         return null;
     }
-
+    /** 최근 공지 가져오기 */
     public Notice[] getRecentNotice (Document document, String division) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
-        Notice[] noticeArray = new Notice[0];
-        for(int i = tableRows.size() - 1; i > 0; i++){
-            Elements tableElement = tableRows.get(i).select("td");
-            if(!validateDuplicateManager(tableElement.get(1).text(), tableElement.get(3).text())) {
-                noticeArray = new Notice[i + 1];  // tr 태그를 변환&저장할 Notice 객체의 배열
-                break;
-            }
-        }
+        int noticeArrayLenth = fetchNewNoticeCount(tableRows);
 
-        for(int i = 1; i < noticeArray.length; i++){
+        Notice[] noticeArray = new Notice[noticeArrayLenth];
+        for(int i = 1; i < noticeArrayLenth; i++){
             Elements tableElement = tableRows.get(i).select("td");  // i번째 tr 태그 라인의 td 태그들
 
             noticeArray[noticeArray.length - 1 - i] = new Notice(
@@ -79,7 +74,19 @@ public class NoticeService {
     }
 
 
-    public boolean validateDuplicateManager (String noticeTitle, String noticeDate) {
-        return jpaNoticeRepository.findByNoticeTitleDate(noticeTitle, noticeDate).isPresent();
+    public int fetchNewNoticeCount (Elements tableRows) {
+        Optional<Notice> noticeOptional = null;
+        int i;
+        for(i = tableRows.size() - 1; i > 0 || noticeOptional.isPresent(); i++){
+            Element tableRowValues = tableRows.get(i);
+            Elements tableElement = tableRowValues.select("td");
+            Element titleElement = tableElement.get(1);
+            String title = titleElement.text();
+
+            Element dateElement = tableElement.get(3);
+            String date = dateElement.text();
+            noticeOptional = jpaNoticeRepository.findByNoticeTitleDate(title, date);
+        }
+        return i + 1;
     }
 }
