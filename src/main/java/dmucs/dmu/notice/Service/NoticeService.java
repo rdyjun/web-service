@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +29,12 @@ public class NoticeService {
     public List<Notice> findAll(){
         return jpaNoticeRepository.findAll();
     }
+
+    /** 새로운 공지사항 DB 저장 */
+    @Scheduled(cron = "0 0 * * * *")
     public void noticeUpdate () {
-        for(Notice noticeList : getRecentNotice(noticeConnect(univercityURL + univercityNoticeURL), "대학")){
+        for(Notice noticeList : getRecentNotice(noticeConnect(univercityURL + univercityNoticeURL), "대학"))
             save(noticeList);
-        }
     }
 
     public Optional<String> getNoticeContent(long nId) {
@@ -50,7 +53,7 @@ public class NoticeService {
         }
         return null;
     }
-    /** 최근 공지 가져오기 */
+    /** DB에 없는 공지(최신) Notice 객체로 반환 */
     public Notice[] getRecentNotice (Document document, String division) {
         Elements tableRows = document.select("tr:not(.notice)");  // 공지 테이블 내 tr태그들
         int noticeArrayLenth = fetchNewNoticeCount(tableRows);
@@ -70,9 +73,10 @@ public class NoticeService {
     }
 
     public String getContent (String contentURL) {
-        return noticeConnect(contentURL).select(".view-con").html();
+        return noticeConnect(contentURL)
+                .select(".view-con")
+                .html();
     }
-
 
     public int fetchNewNoticeCount (Elements tableRows) {
         Optional<Notice> noticeOptional = null;
