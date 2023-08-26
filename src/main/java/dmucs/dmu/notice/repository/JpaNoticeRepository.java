@@ -15,4 +15,6 @@ public interface JpaNoticeRepository extends JpaRepository<Notice, Long> {
     List<Notice> findPageList(@Param("page") int page);
     @Query("SELECT n.noticeContent FROM Notice n WHERE n.noticeId = :nId")
     Optional<String> findContent(@Param("nId") Long nId);
+
+    Optional<Long> findByNoticeIdMax();
 }

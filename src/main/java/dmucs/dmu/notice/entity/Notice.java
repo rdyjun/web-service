@@ -1,5 +1,6 @@
 package dmucs.dmu.notice.entity;
 
+import lombok.Builder;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "notice")
 @ToString
+@Builder
 public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
