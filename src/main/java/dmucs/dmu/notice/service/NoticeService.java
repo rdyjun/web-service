@@ -1,4 +1,4 @@
-package dmucs.dmu.notice.Service;
+package dmucs.dmu.notice.service;
 
 import dmucs.dmu.notice.entity.Notice;
 
