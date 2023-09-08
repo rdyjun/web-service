@@ -9,8 +9,6 @@ import org.jsoup.nodes.Document;
 
 
 @Log4j2
-@AllArgsConstructor
-@NoArgsConstructor
 public class CrawlerImpl implements Crawler {
     /** 커넥터 가져오기 */
     @Override

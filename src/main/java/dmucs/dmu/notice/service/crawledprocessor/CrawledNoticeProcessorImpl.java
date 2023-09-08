@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Log4j2
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Service
 @Primary
 public class CrawledNoticeProcessorImpl implements CrawledNoticeProcessor {
