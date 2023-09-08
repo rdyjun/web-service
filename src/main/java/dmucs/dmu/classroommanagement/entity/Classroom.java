@@ -1,4 +1,4 @@
-package dmucs.dmu.classroomreservation.entity;
+package dmucs.dmu.classroommanagement.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,8 @@
-package dmucs.dmu.classroomreservation.repository;
+package dmucs.dmu.classroommanagement.repository;
 
-import dmucs.dmu.classroomreservation.entity.Classroom;
-import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
-import dmucs.dmu.classroomreservation.entity.RentalType;
+import dmucs.dmu.classroommanagement.entity.Classroom;
+import dmucs.dmu.classroommanagement.entity.ClassroomReservation;
+import dmucs.dmu.classroommanagement.entity.RentalType;
 import dmucs.dmu.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

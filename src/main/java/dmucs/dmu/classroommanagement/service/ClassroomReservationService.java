@@ -1,10 +1,10 @@
-package dmucs.dmu.classroomreservation.service;
+package dmucs.dmu.classroommanagement.service;
 
-import dmucs.dmu.classroomreservation.dto.ClassroomReservationDTO;
-import dmucs.dmu.classroomreservation.entity.Classroom;
-import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
-import dmucs.dmu.classroomreservation.entity.RentalType;
-import dmucs.dmu.classroomreservation.repository.ClassroomReservationJPA;
+import dmucs.dmu.classroommanagement.dto.ClassroomReservationDTO;
+import dmucs.dmu.classroommanagement.entity.Classroom;
+import dmucs.dmu.classroommanagement.entity.ClassroomReservation;
+import dmucs.dmu.classroommanagement.entity.RentalType;
+import dmucs.dmu.classroommanagement.repository.ClassroomReservationJPA;
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.service.MemberService;
 import lombok.RequiredArgsConstructor;

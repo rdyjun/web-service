@@ -1,10 +1,7 @@
-package dmucs.dmu.classroomreservation.controller;
+package dmucs.dmu.classroommanagement.controller;
 
-import dmucs.dmu.classroomreservation.dto.ClassroomReservationDTO;
-import dmucs.dmu.classroomreservation.entity.Classroom;
-import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
-import dmucs.dmu.classroomreservation.entity.RentalType;
-import dmucs.dmu.classroomreservation.service.ClassroomReservationService;
+import dmucs.dmu.classroommanagement.dto.ClassroomReservationDTO;
+import dmucs.dmu.classroommanagement.service.ClassroomReservationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Api(value="ApiController v1")
 @RequestMapping("/reservation/room")

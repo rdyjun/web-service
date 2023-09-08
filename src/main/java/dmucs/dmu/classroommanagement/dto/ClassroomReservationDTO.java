@@ -1,6 +1,6 @@
-package dmucs.dmu.classroomreservation.dto;
+package dmucs.dmu.classroommanagement.dto;
 
-import dmucs.dmu.classroomreservation.entity.ClassroomReservation;
+import dmucs.dmu.classroommanagement.entity.ClassroomReservation;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
