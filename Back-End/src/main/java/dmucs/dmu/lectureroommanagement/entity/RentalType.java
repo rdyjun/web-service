@@ -1,4 +1,4 @@
-package dmucs.dmu.classroommanagement.entity;
+package dmucs.dmu.lectureroommanagement.entity;
 
 public enum RentalType {
     OPEN,

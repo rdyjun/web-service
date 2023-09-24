@@ -1,10 +1,10 @@
-package dmucs.dmu.classroommanagement.service;
+package dmucs.dmu.lectureroommanagement.service;
 
-import dmucs.dmu.classroommanagement.dto.ClassroomReservationDTO;
-import dmucs.dmu.classroommanagement.entity.Classroom;
-import dmucs.dmu.classroommanagement.entity.ClassroomReservation;
-import dmucs.dmu.classroommanagement.entity.RentalType;
-import dmucs.dmu.classroommanagement.repository.ClassroomReservationJPA;
+import dmucs.dmu.lectureroommanagement.dto.LectureroomReservationDTO;
+import dmucs.dmu.lectureroommanagement.entity.Lectureroom;
+import dmucs.dmu.lectureroommanagement.entity.LectureroomReservation;
+import dmucs.dmu.lectureroommanagement.entity.RentalType;
+import dmucs.dmu.lectureroommanagement.repository.LectureroomReservationJPA;
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -18,30 +18,30 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class ClassroomReservationService {
-    private final ClassroomReservationJPA classroomReservationJPA;
+public class LectureroomReservationService {
+    private final LectureroomReservationJPA classroomReservationJPA;
     private final MemberService memberService;
     @Transactional
-    public void reservationToRoom (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
+    public void reservationToRoom (LectureroomReservationDTO classroomReservationDTO) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date date = formatter.parse(classroomReservationDTO.getDate());
-        ClassroomReservation classroomReservation;
+        LectureroomReservation classroomReservation;
 
         if (RentalType.valueOf(classroomReservationDTO.getType()) == RentalType.OPEN) {
             Member member = memberService.getMemberById(classroomReservationDTO.getMemberCode());
             reservationDuplicateManager(date, member);
-            classroomReservation = new ClassroomReservation(
+            classroomReservation = new LectureroomReservation(
                     0L,
-                    new Classroom(classroomReservationDTO.getRoomId(), false),
+                    new Lectureroom(classroomReservationDTO.getRoomId(), false),
                     date,
                     RentalType.valueOf(classroomReservationDTO.getType()),
                     member,
                     classroomReservationDTO.getPurpose()
             );
         } else {
-            classroomReservation = new ClassroomReservation(
+            classroomReservation = new LectureroomReservation(
                 0L,
-                new Classroom(classroomReservationDTO.getRoomId(), false),
+                new Lectureroom(classroomReservationDTO.getRoomId(), false),
                 date,
                 RentalType.valueOf(classroomReservationDTO.getType()),
                 null,
@@ -52,7 +52,7 @@ public class ClassroomReservationService {
         classroomReservationJPA.save(classroomReservation);
     }
     /** 날짜에 따른 특정 강의실 대여 정보 반환*/
-    public ArrayList<ClassroomReservation> getByDateAndClassIdAndType(Date date, Classroom roomId, RentalType type) {
+    public ArrayList<LectureroomReservation> getByDateAndClassIdAndType(Date date, Lectureroom roomId, RentalType type) {
         return classroomReservationJPA.findByDateAndRoomIdAndType(date, roomId, type);
     }
 
@@ -62,15 +62,15 @@ public class ClassroomReservationService {
             throw new IllegalStateException("해당 날짜에 대여한 기록이 존재합니다.");
     }
 
-    public ArrayList<ClassroomReservationDTO> getClassReservationList (ClassroomReservationDTO classroomReservationDTO) throws ParseException {
+    public ArrayList<LectureroomReservationDTO> getClassReservationList (LectureroomReservationDTO classroomReservationDTO) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date date = format.parse(classroomReservationDTO.getDate());
-        ArrayList<ClassroomReservationDTO> classroomReservationDTOS = new ArrayList<>();
-        for (ClassroomReservation c : getByDateAndClassIdAndType(
+        ArrayList<LectureroomReservationDTO> classroomReservationDTOS = new ArrayList<>();
+        for (LectureroomReservation c : getByDateAndClassIdAndType(
                 date,
-                new Classroom(classroomReservationDTO.getRoomId(), false),
+                new Lectureroom(classroomReservationDTO.getRoomId(), false),
                 RentalType.OPEN)) {
-            classroomReservationDTOS.add(new ClassroomReservationDTO(c));
+            classroomReservationDTOS.add(new LectureroomReservationDTO(c));
         }
         return classroomReservationDTOS;
     }

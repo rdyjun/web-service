@@ -1,6 +1,6 @@
-package dmucs.dmu.classroommanagement.dto;
+package dmucs.dmu.lectureroommanagement.dto;
 
-import dmucs.dmu.classroommanagement.entity.ClassroomReservation;
+import dmucs.dmu.lectureroommanagement.entity.LectureroomReservation;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 @Getter
 @NoArgsConstructor
-public class ClassroomReservationDTO {
+public class LectureroomReservationDTO {
 
     private String roomId;
     private String date;
@@ -16,7 +16,7 @@ public class ClassroomReservationDTO {
     private String purpose;
     private Long memberCode;
 
-    public ClassroomReservationDTO (ClassroomReservation classroomReservation) {
+    public LectureroomReservationDTO(LectureroomReservation classroomReservation) {
         this.roomId = classroomReservation.getRoomId().getClassroomId();
         this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(classroomReservation.getDate());
         this.type = classroomReservation.getType().toString();

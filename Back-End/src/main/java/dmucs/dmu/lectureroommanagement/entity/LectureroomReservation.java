@@ -1,4 +1,4 @@
-package dmucs.dmu.classroommanagement.entity;
+package dmucs.dmu.lectureroommanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dmucs.dmu.member.entity.Member;
@@ -15,13 +15,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "rental")
-public class ClassroomReservation implements Serializable {
+public class LectureroomReservation implements Serializable {
     @Id @Column(name = "rental_id", insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "roomId")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Classroom roomId;
+    private Lectureroom roomId;
     @Column(name = "rentalDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "Asia/Seoul")
     private Date date;
