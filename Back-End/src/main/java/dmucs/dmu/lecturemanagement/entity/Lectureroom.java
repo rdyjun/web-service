@@ -1,4 +1,4 @@
-package dmucs.dmu.lectureroommanagement.entity;
+package dmucs.dmu.lecturemanagement.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

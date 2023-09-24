@@ -1,7 +1,7 @@
-package dmucs.dmu.lectureroommanagement.controller;
+package dmucs.dmu.lecturemanagement.controller;
 
-import dmucs.dmu.lectureroommanagement.dto.LectureroomReservationDTO;
-import dmucs.dmu.lectureroommanagement.service.LectureroomReservationService;
+import dmucs.dmu.lecturemanagement.dto.LectureroomReservationDTO;
+import dmucs.dmu.lecturemanagement.service.LectureroomReservationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

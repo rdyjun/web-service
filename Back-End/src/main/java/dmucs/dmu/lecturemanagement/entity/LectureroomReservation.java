@@ -1,4 +1,4 @@
-package dmucs.dmu.lectureroommanagement.entity;
+package dmucs.dmu.lecturemanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dmucs.dmu.member.entity.Member;

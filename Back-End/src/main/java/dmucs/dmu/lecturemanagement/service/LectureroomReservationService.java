@@ -1,10 +1,10 @@
-package dmucs.dmu.lectureroommanagement.service;
+package dmucs.dmu.lecturemanagement.service;
 
-import dmucs.dmu.lectureroommanagement.dto.LectureroomReservationDTO;
-import dmucs.dmu.lectureroommanagement.entity.Lectureroom;
-import dmucs.dmu.lectureroommanagement.entity.LectureroomReservation;
-import dmucs.dmu.lectureroommanagement.entity.RentalType;
-import dmucs.dmu.lectureroommanagement.repository.LectureroomReservationJPA;
+import dmucs.dmu.lecturemanagement.dto.LectureroomReservationDTO;
+import dmucs.dmu.lecturemanagement.entity.Lectureroom;
+import dmucs.dmu.lecturemanagement.entity.LectureroomReservation;
+import dmucs.dmu.lecturemanagement.entity.RentalType;
+import dmucs.dmu.lecturemanagement.repository.LectureroomReservationJPA;
 import dmucs.dmu.member.entity.Member;
 import dmucs.dmu.member.service.MemberService;
 import lombok.RequiredArgsConstructor;

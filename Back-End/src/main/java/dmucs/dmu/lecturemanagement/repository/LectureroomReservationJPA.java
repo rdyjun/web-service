@@ -1,8 +1,8 @@
-package dmucs.dmu.lectureroommanagement.repository;
+package dmucs.dmu.lecturemanagement.repository;
 
-import dmucs.dmu.lectureroommanagement.entity.Lectureroom;
-import dmucs.dmu.lectureroommanagement.entity.LectureroomReservation;
-import dmucs.dmu.lectureroommanagement.entity.RentalType;
+import dmucs.dmu.lecturemanagement.entity.Lectureroom;
+import dmucs.dmu.lecturemanagement.entity.LectureroomReservation;
+import dmucs.dmu.lecturemanagement.entity.RentalType;
 import dmucs.dmu.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
